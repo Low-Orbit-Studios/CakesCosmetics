@@ -6,8 +6,8 @@ plugins {
 }
 
 version = '1.19.2-0.0.1'
-group = 'net.twomoonsstudios.moonscosmetics' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'moonscosmetics'
+group = 'net.twomoonsstudios.cakescosmetics' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'cakescosmetics'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -51,10 +51,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'moonscosmetics'
+            property 'forge.enabledGameTestNamespaces', 'cakescosmetics'
 
             mods {
-                moonscosmetics {
+                cakescosmetics {
                     source sourceSets.main
                 }
             }
@@ -67,10 +67,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'moonscosmetics'
+            property 'forge.enabledGameTestNamespaces', 'cakescosmetics'
 
             mods {
-                moonscosmetics {
+                cakescosmetics {
                     source sourceSets.main
                 }
             }
@@ -86,10 +86,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'moonscosmetics'
+            property 'forge.enabledGameTestNamespaces', 'cakescosmetics'
 
             mods {
-                moonscosmetics {
+                cakescosmetics {
                     source sourceSets.main
                 }
             }
@@ -103,10 +103,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'moonscosmetics', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'cakescosmetics', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                moonscosmetics {
+                cakescosmetics {
                     source sourceSets.main
                 }
             }
@@ -125,6 +125,10 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
 }
 
 dependencies {
@@ -132,6 +136,7 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${mcver}-${forgever}"//1.19.2-43.3.0
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.40')
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -150,12 +155,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "moonscosmetics",
-                "Specification-Vendor"    : "moonscosmeticssareus",
+                "Specification-Title"     : "cakescosmetics",
+                "Specification-Vendor"    : "cakescosmeticssareus",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "moonscosmeticssareus",
+                "Implementation-Vendor"   : "cakescosmeticssareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

@@ -1,4 +1,4 @@
-package net.twomoonsstudios.moonscosmetics;
+package net.twomoonsstudios.cakescosmetics;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
@@ -9,18 +9,18 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.twomoonsstudios.moonscosmetics.item.ModItems;
+import net.twomoonsstudios.cakescosmetics.item.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(MoonsCosmetics.MOD_ID)
-public class MoonsCosmetics
+@Mod(CakesCosmetics.MOD_ID)
+public class CakesCosmetics
 {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "moonscosmetics";
+    public static final String MOD_ID = "cakescosmetics";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    public MoonsCosmetics()
+    public CakesCosmetics()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
