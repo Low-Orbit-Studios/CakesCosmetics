@@ -52,8 +52,8 @@ public class ModItems {
     );
 
     //CHEST
-    public static final RegistryObject<Item> BANDOLIER = ITEMS.register("bandolier",
-            () -> new VanityArmorItem(
+    public static final RegistryObject<VanityArmorItem> BANDOLIER = ITEMS.register("bandolier",
+            () -> new BandolierItem(
                 ModArmorMaterials.VANITY_MATERIAL,
                 EquipmentSlot.CHEST,
                 new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
