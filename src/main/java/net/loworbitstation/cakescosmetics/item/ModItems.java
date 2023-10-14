@@ -1,5 +1,6 @@
 package net.loworbitstation.cakescosmetics.item;
 
+import net.loworbitstation.cakescosmetics.entity.armor.TopHatModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
@@ -15,36 +16,36 @@ public class ModItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, CakesCosmetics.MOD_ID);
 
     //HEAD
-    public static final RegistryObject<Item> CAPTAINS_HAT = ITEMS.register("captains_hat",
-            () -> new ArmorItem(
+    public static final RegistryObject<VanityArmorItem> CAPTAINS_HAT = ITEMS.register("captain_hat",
+            () -> new CaptainHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
-    public static final RegistryObject<Item> COWBOY_HAT = ITEMS.register("cowboy_hat",
-            () -> new ArmorItem(
+    public static final RegistryObject<VanityArmorItem> COWBOY_HAT = ITEMS.register("cowboy_hat",
+            () -> new CowboyHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
-    public static final RegistryObject<Item> HORNS = ITEMS.register("horns",
-            () -> new ArmorItem(
+    public static final RegistryObject<VanityArmorItem> HORNS = ITEMS.register("horns",
+            () -> new HornsItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
-    public static final RegistryObject<Item> SOMBRERO = ITEMS.register("sombrero",
-            () -> new ArmorItem(
+    public static final RegistryObject<VanityArmorItem> SOMBRERO = ITEMS.register("sombrero",
+            () -> new SombreroItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
-    public static final RegistryObject<Item> TOP_HAT = ITEMS.register("top_hat",
-            () -> new ArmorItem(
+    public static final RegistryObject<VanityArmorItem> TOP_HAT = ITEMS.register("top_hat",
+            () -> new TopHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
@@ -59,8 +60,8 @@ public class ModItems {
                 new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
         );
-    public static final RegistryObject<Item> HOLSTERED_BELT = ITEMS.register("holstered_belt",
-            () -> new ArmorItem(
+    public static final RegistryObject<VanityArmorItem> HOLSTERED_BELT = ITEMS.register("holstered_belt",
+            () -> new HolsteredBeltItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)

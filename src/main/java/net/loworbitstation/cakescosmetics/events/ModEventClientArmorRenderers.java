@@ -1,8 +1,8 @@
 package net.loworbitstation.cakescosmetics.events;
 
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
-import net.loworbitstation.cakescosmetics.entity.armor.BandolierRenderer;
-import net.loworbitstation.cakescosmetics.item.BandolierItem;
+import net.loworbitstation.cakescosmetics.entity.armor.*;
+import net.loworbitstation.cakescosmetics.item.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,5 +14,11 @@ public class ModEventClientArmorRenderers {
     @SubscribeEvent
     public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
         GeoArmorRenderer.registerArmorRenderer(BandolierItem.class, () -> new BandolierRenderer());
+        GeoArmorRenderer.registerArmorRenderer(CaptainHatItem.class, () -> new CaptainHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(CowboyHatItem.class, () -> new CowboyHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(HolsteredBeltItem.class, () -> new HolsteredBeltRenderer());
+        GeoArmorRenderer.registerArmorRenderer(HornsItem.class, () -> new HornsRenderer());
+        GeoArmorRenderer.registerArmorRenderer(SombreroItem.class, () -> new SombreroRenderer());
+        GeoArmorRenderer.registerArmorRenderer(TopHatItem.class, () -> new TopHatRenderer());
     }
 }
