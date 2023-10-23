@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cakescosmetics:block/sewing_station"
+    },
+    "facing=south": {
+      "model": "cakescosmetics:block/sewing_station",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cakescosmetics:block/sewing_station",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cakescosmetics:block/sewing_station",
+      "y": 90
+    }
+  }
+}
