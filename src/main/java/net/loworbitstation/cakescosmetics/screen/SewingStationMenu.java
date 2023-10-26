@@ -1,9 +1,8 @@
 package net.loworbitstation.cakescosmetics.screen;
 
 import com.google.common.collect.Lists;
-import com.mojang.serialization.Decoder;
+import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
-import net.loworbitstation.cakescosmetics.block.entity.ModBlockEntities;
 import net.loworbitstation.cakescosmetics.block.entity.SewingStationBlockEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -17,10 +16,11 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import java.util.List;
 
-import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_SLOT_COUNT;
+import static net.loworbitstation.cakescosmetics.data.constants.Constants.*;
 
 
 public class SewingStationMenu extends AbstractContainerMenu {
@@ -29,25 +29,53 @@ public class SewingStationMenu extends AbstractContainerMenu {
     private static final int USE_ROW_SLOT_START = 29;
     private static final int USE_ROW_SLOT_END = 38;
 
-    private final ContainerData data;
+    private Slot inputSlot;
+    private Slot outputSlot;
 
+    Runnable slotUpdateListener = () -> {
+    };
     public final SewingStationBlockEntity blockEntity;
     private final Level level;
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
+    private List<SewingStationRecipe> recipes = Lists.newArrayList();
+    public final Container container = new SimpleContainer(1) {
+        /**
+         * For block entities, ensures the chunk containing the block entity is saved to disk later - the game won't think
+         * it hasn't changed and skip it.
+         */
+        public void setChanged() {
+            super.setChanged();
+            SewingStationMenu.this.slotsChanged(this);
+            SewingStationMenu.this.slotUpdateListener.run();
+        }
+    };
     /** The inventory that stores the output of the crafting recipe. */
     final ResultContainer resultContainer = new ResultContainer();
 
     public SewingStationMenu(int pContainerId, Inventory pPlayerInventory, FriendlyByteBuf extraData) {
         this(pContainerId, pPlayerInventory, pPlayerInventory.player.level.getBlockEntity(extraData.readBlockPos()));
     }
-    public StonecutterMenu(int pContainerId, Inventory pPlayerInventory, BlockEntity entity) {
-        super(, pContainerId);
+
+    public SewingStationMenu(int pContainerId, Inventory pPlayerInventory, BlockEntity entity) {
+        super(ModMenuTypes.SEWING_STATION_MENU.get(), pContainerId);
         checkContainerSize(pPlayerInventory, SEWING_STATION_SLOT_COUNT);
         blockEntity = (SewingStationBlockEntity) entity;
         this.level = pPlayerInventory.player.level;
 
         addPlayerInventory(pPlayerInventory);
         addPlayerHotbar(pPlayerInventory);
+
+        var itemHandlerCapability = this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER);
+        if(itemHandlerCapability.isPresent()){
+            //Position values akin to Stonecutter's.
+            inputSlot = this.addSlot(new Slot(this.container, SEWING_STATION_INPUT_SLOT_INDEX,20, 33));
+            outputSlot = this.addSlot(new Slot(this.resultContainer, SEWING_STATION_OUTPUT_SLOT_INDEX,143, 33));
+        }
+        else{
+            CakesCosmetics.LOGGER.error("No item handler capability found upon creating Sewing Station Menu!");
+        }
+
+        addDataSlot(selectedRecipeIndex);
     }
 
     private void setupRecipeList(Container pContainer, ItemStack pStack) {
@@ -72,26 +100,33 @@ public class SewingStationMenu extends AbstractContainerMenu {
             ItemStack itemstack1 = slot.getItem();
             Item item = itemstack1.getItem();
             itemstack = itemstack1.copy();
-            if (pIndex == 1) {
+
+            if (pIndex == SEWING_STATION_OUTPUT_SLOT_INDEX) {
                 item.onCraftedBy(itemstack1, pPlayer.level, pPlayer);
-                if (!this.moveItemStackTo(itemstack1, 2, 38, true)) {
+                if (!this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX,
+                        PLAYER_TOTAL_LAST_SLOT_INDEX, true)) {
                     return ItemStack.EMPTY;
                 }
                 //TODO Setup indices for slots. Unify them. https://youtu.be/jo0BTisGpJk?list=PLKGarocXCE1HrC60yuTNTGRoZc6hf5Uvl&t=1716
                 slot.onQuickCraft(itemstack1, itemstack);
-            } else if (pIndex == 0) {
-                if (!this.moveItemStackTo(itemstack1, 2, 38, false)) {
+            } else if (pIndex == SEWING_STATION_INPUT_SLOT_INDEX) {
+                if (!this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX,
+                        PLAYER_TOTAL_LAST_SLOT_INDEX,
+                        false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (this.level.getRecipeManager().getRecipeFor(RecipeType.STONECUTTING, new SimpleContainer(itemstack1), this.level).isPresent()) {
-                if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
+                if (!this.moveItemStackTo(itemstack1, SEWING_STATION_INPUT_SLOT_INDEX, SEWING_STATION_OUTPUT_SLOT_INDEX, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (pIndex >= 2 && pIndex < 29) {
-                if (!this.moveItemStackTo(itemstack1, 29, 38, false)) {
+            } else if (pIndex >= PLAYER_EQ_FIRST_SLOT_INDEX && pIndex < PLAYER_EQ_LAST_SLOT_INDEX) {
+                if (!this.moveItemStackTo(itemstack1,
+                        PLAYER_EQ_LAST_SLOT_INDEX,
+                        PLAYER_TOTAL_LAST_SLOT_INDEX,
+                        false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (pIndex >= 29 && pIndex < 38 && !this.moveItemStackTo(itemstack1, 2, 29, false)) {
+            } else if (pIndex >= PLAYER_EQ_LAST_SLOT_INDEX && pIndex < PLAYER_TOTAL_LAST_SLOT_INDEX && !this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX, PLAYER_EQ_LAST_SLOT_INDEX, false)) {
                 return ItemStack.EMPTY;
             }
 

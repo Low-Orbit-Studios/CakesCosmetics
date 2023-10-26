@@ -2,6 +2,7 @@ package net.loworbitstation.cakescosmetics;
 
 import com.mojang.logging.LogUtils;
 import net.loworbitstation.cakescosmetics.block.entity.ModBlockEntities;
+import net.loworbitstation.cakescosmetics.screen.ModMenuTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,7 +22,7 @@ public class CakesCosmetics
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "cakescosmetics";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public CakesCosmetics()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -32,6 +33,7 @@ public class CakesCosmetics
         GeckoLib.initialize();
 
         ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

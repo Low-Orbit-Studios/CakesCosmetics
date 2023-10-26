@@ -3,6 +3,7 @@ package net.loworbitstation.cakescosmetics.block.entity;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
 import net.loworbitstation.cakescosmetics.block.custom.SewingStationBlock;
 import net.loworbitstation.cakescosmetics.item.ModItems;
+import net.loworbitstation.cakescosmetics.screen.SewingStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -28,8 +29,8 @@ import org.jetbrains.annotations.Nullable;
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_SLOT_COUNT;
 
 public class SewingStationBlockEntity extends BlockEntity implements MenuProvider {
-    public static final int INPUT_SLOT_ID = 1;
-    public static final int OUTPUT_SLOT_ID = 2;
+    public static final int INPUT_SLOT_ID = 0;
+    public static final int OUTPUT_SLOT_ID = 1;
     private final String INVENTORY_TAG_KEY = "inventory";
     private final ItemStackHandler itemHandler = new ItemStackHandler(SEWING_STATION_SLOT_COUNT){
         @Override
@@ -52,7 +53,7 @@ public class SewingStationBlockEntity extends BlockEntity implements MenuProvide
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return null;
+        return new SewingStationMenu(pContainerId, pPlayerInventory, this);
     }
 
     @Override
