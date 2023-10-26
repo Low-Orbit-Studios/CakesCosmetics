@@ -1,19 +1,22 @@
 package net.loworbitstation.cakescosmetics.block.entity;
 
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
+import net.loworbitstation.cakescosmetics.block.custom.SewingStationBlock;
+import net.loworbitstation.cakescosmetics.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -22,10 +25,13 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_SLOT_COUNT;
+
 public class SewingStationBlockEntity extends BlockEntity implements MenuProvider {
-    private final int INVENTORY_SIZE = 3;
+    public static final int INPUT_SLOT_ID = 1;
+    public static final int OUTPUT_SLOT_ID = 2;
     private final String INVENTORY_TAG_KEY = "inventory";
-    private final ItemStackHandler itemHandler = new ItemStackHandler(INVENTORY_SIZE){
+    private final ItemStackHandler itemHandler = new ItemStackHandler(SEWING_STATION_SLOT_COUNT){
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -93,12 +99,37 @@ public class SewingStationBlockEntity extends BlockEntity implements MenuProvide
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
-
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (pLevel.isClientSide) {
+            return InteractionResult.SUCCESS;
+        } else {
+            pPlayer.openMenu(pState.getMenuProvider(pLevel, pPos));
+            return InteractionResult.CONSUME;
+        }
+    }
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, SewingStationBlockEntity blockEntity) {
         if(level.isClientSide()) {
             return;
         }
-        //TODO https://youtu.be/jo0BTisGpJk?list=PLKGarocXCE1HrC60yuTNTGRoZc6hf5Uvl&t=801
+    }
 
+    private static void craftItem(SewingStationBlockEntity pEntity){
+        if(hasRecipe(pEntity)){
+            pEntity.itemHandler.extractItem(INPUT_SLOT_ID,1, false);
+            pEntity.itemHandler.setStackInSlot(OUTPUT_SLOT_ID, new ItemStack(ModItems.CAPTAINS_HAT.get()
+                    , pEntity.itemHandler.getStackInSlot(OUTPUT_SLOT_ID).getCount() + 1));
+            //WILL HAVE TO CHANGE LATER PROBABLY
+        }
+    }
+    private static boolean hasRecipe(SewingStationBlockEntity pEntity){
+        var inventorySlots = pEntity.itemHandler.getSlots();
+        var inventory = new SimpleContainer(inventorySlots);
+        for(int i = 0; i < inventorySlots; i++){
+            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+        }
+
+        var hasTemplateItemInSlot = pEntity.itemHandler.getStackInSlot(1).getItem() == ModItems.COSMETICS_TEMPLATE.get();
+
+        return hasTemplateItemInSlot;
     }
 }
