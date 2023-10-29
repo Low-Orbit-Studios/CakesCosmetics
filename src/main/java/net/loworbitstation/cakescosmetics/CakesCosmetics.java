@@ -3,6 +3,8 @@ package net.loworbitstation.cakescosmetics;
 import com.mojang.logging.LogUtils;
 import net.loworbitstation.cakescosmetics.block.entity.ModBlockEntities;
 import net.loworbitstation.cakescosmetics.screen.ModMenuTypes;
+import net.loworbitstation.cakescosmetics.screen.SewingStationScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -52,6 +54,7 @@ public class CakesCosmetics
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            MenuScreens.register(ModMenuTypes.SEWING_STATION_MENU.get(), SewingStationScreen::new);
         }
     }
 }

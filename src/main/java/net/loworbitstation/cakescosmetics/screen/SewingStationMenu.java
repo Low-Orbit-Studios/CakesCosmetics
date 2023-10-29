@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
 import net.loworbitstation.cakescosmetics.block.entity.SewingStationBlockEntity;
+import net.loworbitstation.cakescosmetics.recipe.ModRecipeType;
+import net.loworbitstation.cakescosmetics.recipe.SewingStationRecipe;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -13,7 +15,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -78,16 +79,28 @@ public class SewingStationMenu extends AbstractContainerMenu {
         addDataSlot(selectedRecipeIndex);
     }
 
+    //From StonecutterMenu.java
     private void setupRecipeList(Container pContainer, ItemStack pStack) {
         this.recipes.clear();
         this.selectedRecipeIndex.set(-1);
-        this.resultSlot.set(ItemStack.EMPTY);
+        this.outputSlot.set(ItemStack.EMPTY);
         if (!pStack.isEmpty()) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(RecipeType.STONECUTTING, pContainer, this.level);
+            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipeType.SEWING, pContainer, this.level);
         }
 
     }
-
+    //From StonecutterMenu.java
+    /**
+     * Returns the index of the selected recipe.
+     */
+    public int getSelectedRecipeIndex() {
+        return this.selectedRecipeIndex.get();
+    }
+    //From StonecutterMenu.java
+    public int getNumRecipes() {
+        return this.recipes.size();
+    }
+    //From StonecutterMenu.java
     /**
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
      * inventory and the other inventory(s).
