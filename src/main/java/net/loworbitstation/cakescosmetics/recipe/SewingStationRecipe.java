@@ -10,23 +10,29 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleItemRecipe;
 import net.minecraft.world.level.Level;
 
+import static net.loworbitstation.cakescosmetics.recipe.ModRecipes.*;
+
 public class SewingStationRecipe extends SingleItemRecipe {
     public SewingStationRecipe(ResourceLocation pId, String pGroup, Ingredient pIngredient, ItemStack pResult) {
-        super(ModRecipeType.SEWING, ModRecipeSerializer.INSTANCE, pId, pGroup, pIngredient, pResult);
+        super(SEWING_RECIPE_TYPE.get(), SewingRecipeSerializer.INSTANCE, pId, pGroup, pIngredient, pResult);
     }
 
     @Override
     public boolean matches(Container pContainer, Level pLevel) {
+        if (pLevel.isClientSide()) {
+            return false;
+        }
+
         return this.ingredient.test(pContainer.getItem(Constants.SEWING_STATION_INPUT_SLOT_INDEX));
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return null;
+        return SEWING_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipeType.INSTANCE;
+        return SEWING_RECIPE_TYPE.get();
     }
 }

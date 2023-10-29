@@ -3,6 +3,8 @@ package net.loworbitstation.cakescosmetics.block.entity;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
 import net.loworbitstation.cakescosmetics.block.custom.SewingStationBlock;
 import net.loworbitstation.cakescosmetics.item.ModItems;
+import net.loworbitstation.cakescosmetics.recipe.SewingRecipeType;
+import net.loworbitstation.cakescosmetics.recipe.SewingStationRecipe;
 import net.loworbitstation.cakescosmetics.screen.SewingStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,6 +27,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_SLOT_COUNT;
 
@@ -115,6 +119,7 @@ public class SewingStationBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static void craftItem(SewingStationBlockEntity pEntity){
+        //TODO optional if needed https://youtu.be/uP3jfKrWgro?list=PLKGarocXCE1HrC60yuTNTGRoZc6hf5Uvl&t=1018
         if(hasRecipe(pEntity)){
             pEntity.itemHandler.extractItem(INPUT_SLOT_ID,1, false);
             pEntity.itemHandler.setStackInSlot(OUTPUT_SLOT_ID, new ItemStack(ModItems.CAPTAINS_HAT.get()
@@ -123,14 +128,25 @@ public class SewingStationBlockEntity extends BlockEntity implements MenuProvide
         }
     }
     private static boolean hasRecipe(SewingStationBlockEntity pEntity){
+        var level = pEntity.level;
+
         var inventorySlots = pEntity.itemHandler.getSlots();
         var inventory = new SimpleContainer(inventorySlots);
         for(int i = 0; i < inventorySlots; i++){
             inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
         }
+        Optional<SewingStationRecipe> recipe = level.getRecipeManager().getRecipeFor(SewingRecipeType.INSTANCE, inventory, level);
 
-        var hasTemplateItemInSlot = pEntity.itemHandler.getStackInSlot(1).getItem() == ModItems.COSMETICS_TEMPLATE.get();
+        var hasCorrectIngredientInInputSlot = recipe.isPresent()
+                && canInsertItemIntoOutputSlot(inventory, recipe.get().getResultItem())
+                && canInsertAmountIntoOutputSlot(inventory);
 
-        return hasTemplateItemInSlot;
+        return hasCorrectIngredientInInputSlot;
+    }
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack){
+        return inventory.getItem(OUTPUT_SLOT_ID).getItem() == stack.getItem() || inventory.getItem(OUTPUT_SLOT_ID).isEmpty();
+    }
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory){
+        return inventory.getItem(OUTPUT_SLOT_ID).getMaxStackSize() > inventory.getItem(OUTPUT_SLOT_ID).getCount();
     }
 }

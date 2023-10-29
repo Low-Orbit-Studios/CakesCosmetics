@@ -3,6 +3,7 @@ package net.loworbitstation.cakescosmetics.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
+import net.loworbitstation.cakescosmetics.recipe.SewingStationRecipe;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -75,7 +76,7 @@ public class SewingStationScreen extends AbstractContainerScreen<SewingStationMe
     }
     //From StonecutterScreen.java
     private void renderRecipes(int pLeft, int pTop, int pRecipeIndexOffsetMax) {
-        List<StonecutterRecipe> list = this.menu.getRecipes();
+        List<SewingStationRecipe> list = this.menu.getRecipes();
 
         for(int i = this.startIndex; i < pRecipeIndexOffsetMax && i < this.menu.getNumRecipes(); ++i) {
             int j = i - this.startIndex;

@@ -17,10 +17,12 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
+import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_PATH;
+
 public class ModBlocks {
     public final static DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CakesCosmetics.MOD_ID);
 
-    public static final RegistryObject<Block> SEWING_STATION = registerBlock("sewing_station",
+    public static final RegistryObject<Block> SEWING_STATION = registerBlock(SEWING_STATION_PATH,
             () -> new SewingStationBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(6f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.CAKES_COSMETICS_TAB);
             ;

@@ -1,7 +1,9 @@
 package net.loworbitstation.cakescosmetics;
 
 import com.mojang.logging.LogUtils;
+import net.loworbitstation.cakescosmetics.block.ModBlocks;
 import net.loworbitstation.cakescosmetics.block.entity.ModBlockEntities;
+import net.loworbitstation.cakescosmetics.recipe.ModRecipes;
 import net.loworbitstation.cakescosmetics.screen.ModMenuTypes;
 import net.loworbitstation.cakescosmetics.screen.SewingStationScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -34,8 +36,11 @@ public class CakesCosmetics
         modEventBus.addListener(this::commonSetup);
         GeckoLib.initialize();
 
+        ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModRecipes.registerForSerializers(modEventBus);
+        ModRecipes.registerForRecipeTypes(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

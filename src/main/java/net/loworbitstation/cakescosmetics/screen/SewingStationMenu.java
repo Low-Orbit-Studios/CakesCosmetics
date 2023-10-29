@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
 import net.loworbitstation.cakescosmetics.block.entity.SewingStationBlockEntity;
-import net.loworbitstation.cakescosmetics.recipe.ModRecipeType;
+import net.loworbitstation.cakescosmetics.recipe.SewingRecipeType;
 import net.loworbitstation.cakescosmetics.recipe.SewingStationRecipe;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -22,16 +22,17 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import java.util.List;
 
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.*;
+import static net.loworbitstation.cakescosmetics.recipe.ModRecipes.SEWING_RECIPE_TYPE;
 
 
 public class SewingStationMenu extends AbstractContainerMenu {
-    private static final int INV_SLOT_START = 2;
-    private static final int INV_SLOT_END = 29;
-    private static final int USE_ROW_SLOT_START = 29;
-    private static final int USE_ROW_SLOT_END = 38;
-
+    //From StonecutterMenu.java
     private Slot inputSlot;
+    //From StonecutterMenu.java
     private Slot outputSlot;
+    //From StonecutterMenu.java
+    /** The ItemStack set in the input slot by the player. */
+    private ItemStack input = ItemStack.EMPTY;
 
     Runnable slotUpdateListener = () -> {
     };
@@ -80,14 +81,52 @@ public class SewingStationMenu extends AbstractContainerMenu {
     }
 
     //From StonecutterMenu.java
+    @Override
+    public void slotsChanged(Container pInventory) {
+        var itemStack = this.inputSlot.getItem();
+        if(!itemStack.is(this.input.getItem())){
+            this.input = itemStack.copy();
+            this.setupRecipeList(pInventory, itemStack);
+        }
+    }
+
+    //From StonecutterMenu.java
     private void setupRecipeList(Container pContainer, ItemStack pStack) {
         this.recipes.clear();
         this.selectedRecipeIndex.set(-1);
         this.outputSlot.set(ItemStack.EMPTY);
         if (!pStack.isEmpty()) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipeType.SEWING, pContainer, this.level);
+            this.recipes = this.level.getRecipeManager().getRecipesFor(SEWING_RECIPE_TYPE.get(), pContainer, this.level);
         }
 
+    }
+
+    //From StonecutterMenu.java
+    @Override
+    public boolean clickMenuButton(Player pPlayer, int pId) {
+        if (this.isValidRecipeIndex(pId)) {
+            this.selectedRecipeIndex.set(pId);
+            this.setupResultSlot();
+        }
+
+        return true;
+    }
+
+    //From StonecutterMenu.java
+    void setupResultSlot() {
+        if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
+            var sewingStationRecipe = this.recipes.get(this.selectedRecipeIndex.get());
+            this.resultContainer.setRecipeUsed(sewingStationRecipe);
+            this.outputSlot.set(sewingStationRecipe.assemble(this.container));
+        } else {
+            this.outputSlot.set(ItemStack.EMPTY);
+        }
+
+        this.broadcastChanges();
+    }
+    //From StonecutterMenu.java
+    private boolean isValidRecipeIndex(int pRecipeIndex) {
+        return pRecipeIndex >= 0 && pRecipeIndex < this.recipes.size();
     }
     //From StonecutterMenu.java
     /**
@@ -159,10 +198,24 @@ public class SewingStationMenu extends AbstractContainerMenu {
         return itemstack;
     }
 
+    public List<SewingStationRecipe> getRecipes(){
+        return recipes;
+    }
+
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, ModBlocks.SEWING_STATION.get());
+    }
+
+    //From StonecutterMenu.java
+    @Override
+    public void removed(Player pPlayer) {
+        super.removed(pPlayer);
+        this.resultContainer.removeItemNoUpdate(1);
+        ContainerLevelAccess.create(level, blockEntity.getBlockPos()).execute((arg1, arg2) -> {
+            this.clearContainer(pPlayer, this.container);
+        });
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
