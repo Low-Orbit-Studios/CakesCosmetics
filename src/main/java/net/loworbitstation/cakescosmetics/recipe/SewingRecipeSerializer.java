@@ -1,27 +1,22 @@
 package net.loworbitstation.cakescosmetics.recipe;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
-import net.loworbitstation.cakescosmetics.item.ModItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.*;
 
 public class SewingRecipeSerializer implements RecipeSerializer<SewingStationRecipe> {
     public static final SewingRecipeSerializer INSTANCE = new SewingRecipeSerializer();
-    public static final ResourceLocation ID =
+    public static final ResourceLocation GROUP_ID =
             new ResourceLocation(CakesCosmetics.MOD_ID, SEWING_SERIALIZER_PATH);
 
     @Override
@@ -34,7 +29,7 @@ public class SewingRecipeSerializer implements RecipeSerializer<SewingStationRec
 
         var input = Ingredient.fromJson(ingredientJSONObj);
 
-        return new SewingStationRecipe(ID, pRecipeId.toString(), input, output);
+        return new SewingStationRecipe(pRecipeId, GROUP_ID.toString(), input, output);
     }
     //order and amount of fields in fromNetwork and toNetwork have to match!!
     @Override
@@ -45,7 +40,7 @@ public class SewingRecipeSerializer implements RecipeSerializer<SewingStationRec
         inputs.set(0, Ingredient.fromNetwork(pBuffer));
 
         ItemStack output = pBuffer.readItem();
-        return new SewingStationRecipe(ID, pRecipeId.toString(), inputs.get(0), output);
+        return new SewingStationRecipe(GROUP_ID, pRecipeId.toString(), inputs.get(0), output);
     }
 
     //order and amount of fields in fromNetwork and toNetwork have to match!!

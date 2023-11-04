@@ -19,9 +19,9 @@ public class SewingStationRecipe extends SingleItemRecipe {
 
     @Override
     public boolean matches(Container pContainer, Level pLevel) {
-        if (pLevel.isClientSide()) {
-            return false;
-        }
+//        if (pLevel.isClientSide()) {
+//            return false;
+//        }
 
         return this.ingredient.test(pContainer.getItem(Constants.SEWING_STATION_INPUT_SLOT_INDEX));
     }

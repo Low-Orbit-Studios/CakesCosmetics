@@ -28,5 +28,7 @@ public class ModRecipes {
     public static void registerForSerializers(IEventBus eventBus){
         SERIALIZERS.register(eventBus);
     }
-    public static void registerForRecipeTypes(IEventBus eventBus) { RECIPE_TYPES.register(eventBus); }
+    public static void registerForRecipeTypes(IEventBus eventBus) {
+        RECIPE_TYPES.register(eventBus);
+    }
 }

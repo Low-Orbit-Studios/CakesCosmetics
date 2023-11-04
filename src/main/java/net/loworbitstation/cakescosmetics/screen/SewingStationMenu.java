@@ -96,7 +96,11 @@ public class SewingStationMenu extends AbstractContainerMenu {
         this.selectedRecipeIndex.set(-1);
         this.outputSlot.set(ItemStack.EMPTY);
         if (!pStack.isEmpty()) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(SEWING_RECIPE_TYPE.get(), pContainer, this.level);
+            var recipeType = SEWING_RECIPE_TYPE.get();
+            var recipeTypeKey = SEWING_RECIPE_TYPE.getKey();
+            var recipeManager = this.level.getRecipeManager();
+
+            this.recipes = recipeManager.getRecipesFor(recipeType, pContainer, this.level);
         }
 
     }
@@ -159,7 +163,7 @@ public class SewingStationMenu extends AbstractContainerMenu {
                         PLAYER_TOTAL_LAST_SLOT_INDEX, true)) {
                     return ItemStack.EMPTY;
                 }
-                //TODO Setup indices for slots. Unify them. https://youtu.be/jo0BTisGpJk?list=PLKGarocXCE1HrC60yuTNTGRoZc6hf5Uvl&t=1716
+
                 slot.onQuickCraft(itemstack1, itemstack);
             } else if (pIndex == SEWING_STATION_INPUT_SLOT_INDEX) {
                 if (!this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX,
@@ -232,3 +236,5 @@ public class SewingStationMenu extends AbstractContainerMenu {
         }
     }
 }
+//TODO apparently the recipes found by screen class have size of 0. Hence no items are shown.
+//TODO something in this mod breaks regular stonecutter, too... Find source of the double recipe registering
