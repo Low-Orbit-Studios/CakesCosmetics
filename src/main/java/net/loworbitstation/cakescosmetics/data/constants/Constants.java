@@ -20,7 +20,7 @@ public class Constants {
     /**How many rows in player's equipment (no hotbar).*/
     public static final int PLAYER_EQ_ROW_COUNT = 3;
     /**How many columns in player's equipment (no hotbar).*/
-    public static final int PLAYER_EQ_COLUMN_COUNT = 3;
+    public static final int PLAYER_EQ_COLUMN_COUNT = 9;
     public static final int PLAYER_TOTAL_SLOT_COUNT = PLAYER_HOTBAR_SLOT_COUNT + PLAYER_EQ_SLOT_COUNT;
     public static final int PLAYER_EQ_FIRST_SLOT_INDEX = 0;
     public static final int PLAYER_TOTAL_LAST_SLOT_INDEX = PLAYER_EQ_FIRST_SLOT_INDEX + PLAYER_TOTAL_SLOT_COUNT;

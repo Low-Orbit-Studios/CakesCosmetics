@@ -7,6 +7,8 @@ import net.loworbitstation.cakescosmetics.block.entity.SewingStationBlockEntity;
 import net.loworbitstation.cakescosmetics.recipe.SewingRecipeType;
 import net.loworbitstation.cakescosmetics.recipe.SewingStationRecipe;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -27,12 +29,20 @@ import static net.loworbitstation.cakescosmetics.recipe.ModRecipes.SEWING_RECIPE
 
 public class SewingStationMenu extends AbstractContainerMenu {
     //From StonecutterMenu.java
+    private final ContainerLevelAccess access;
+    //From StonecutterMenu.java
     private Slot inputSlot;
     //From StonecutterMenu.java
     private Slot outputSlot;
     //From StonecutterMenu.java
     /** The ItemStack set in the input slot by the player. */
     private ItemStack input = ItemStack.EMPTY;
+    //From StonecutterMenu.java
+    /**
+     * Stores the game time of the last time the player took items from the the crafting result slot. This is used to
+     * prevent the sound from being played multiple times on the same tick.
+     */
+    long lastSoundTime;
 
     Runnable slotUpdateListener = () -> {
     };
@@ -63,6 +73,7 @@ public class SewingStationMenu extends AbstractContainerMenu {
         checkContainerSize(pPlayerInventory, SEWING_STATION_SLOT_COUNT);
         blockEntity = (SewingStationBlockEntity) entity;
         this.level = pPlayerInventory.player.level;
+        this.access = ContainerLevelAccess.create(level, blockEntity.getBlockPos());;
 
         addPlayerInventory(pPlayerInventory);
         addPlayerHotbar(pPlayerInventory);
@@ -71,7 +82,35 @@ public class SewingStationMenu extends AbstractContainerMenu {
         if(itemHandlerCapability.isPresent()){
             //Position values akin to Stonecutter's.
             inputSlot = this.addSlot(new Slot(this.container, SEWING_STATION_INPUT_SLOT_INDEX,20, 33));
-            outputSlot = this.addSlot(new Slot(this.resultContainer, SEWING_STATION_OUTPUT_SLOT_INDEX,143, 33));
+            outputSlot = this.addSlot(new Slot(this.resultContainer, SEWING_STATION_OUTPUT_SLOT_INDEX,143, 33){
+                //From StonecutterMenu.java
+                /**
+                 * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
+                 */
+                public boolean mayPlace(ItemStack p_40362_) {
+                    return false;
+                }
+
+                //From StonecutterMenu.java
+                public void onTake(Player p_150672_, ItemStack p_150673_) {
+                    p_150673_.onCraftedBy(p_150672_.level, p_150672_, p_150673_.getCount());
+                    SewingStationMenu.this.resultContainer.awardUsedRecipes(p_150672_);
+                    ItemStack itemstack = SewingStationMenu.this.inputSlot.remove(1);
+                    if (!itemstack.isEmpty()) {
+                        SewingStationMenu.this.setupResultSlot();
+                    }
+
+                    access.execute((level, levelPosConsumer) -> {
+                        long l = level.getGameTime();
+                        if (SewingStationMenu.this.lastSoundTime != l) {
+                            level.playSound((Player)null, levelPosConsumer, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
+                            SewingStationMenu.this.lastSoundTime = l;
+                        }
+
+                    });
+                    super.onTake(p_150672_, p_150673_);
+                }
+            });
         }
         else{
             CakesCosmetics.LOGGER.error("No item handler capability found upon creating Sewing Station Menu!");
@@ -89,7 +128,14 @@ public class SewingStationMenu extends AbstractContainerMenu {
             this.setupRecipeList(pInventory, itemStack);
         }
     }
-
+    //From StonecutterMenu.java
+    public boolean hasInputItem() {
+        return this.inputSlot.hasItem() && !this.recipes.isEmpty();
+    }
+    //From StonecutterMenu.java
+    public void registerUpdateListener(Runnable pListener) {
+        this.slotUpdateListener = pListener;
+    }
     //From StonecutterMenu.java
     private void setupRecipeList(Container pContainer, ItemStack pStack) {
         this.recipes.clear();
@@ -106,7 +152,6 @@ public class SewingStationMenu extends AbstractContainerMenu {
     }
 
     //From StonecutterMenu.java
-    @Override
     public boolean clickMenuButton(Player pPlayer, int pId) {
         if (this.isValidRecipeIndex(pId)) {
             this.selectedRecipeIndex.set(pId);
@@ -208,7 +253,7 @@ public class SewingStationMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
+        return stillValid(this.access,//ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, ModBlocks.SEWING_STATION.get());
     }
 
@@ -223,18 +268,16 @@ public class SewingStationMenu extends AbstractContainerMenu {
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
-        for (int i = 0; i < 3; ++i) {
-            for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
+        for (int i = 0; i < PLAYER_EQ_ROW_COUNT; ++i) {
+            for (int l = 0; l < PLAYER_EQ_COLUMN_COUNT; ++l) {
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+        for (int i = 0; i < PLAYER_EQ_COLUMN_COUNT; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 }
-//TODO apparently the recipes found by screen class have size of 0. Hence no items are shown.
-//TODO something in this mod breaks regular stonecutter, too... Find source of the double recipe registering

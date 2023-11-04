@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "key": {
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "I": {
+      "tag": "forge:dyes"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    " F ",
+    "SPS",
+    " I "
+  ],
+  "result": {
+    "item": "cakescosmetics:cosmetics_template"
+  }
+}
