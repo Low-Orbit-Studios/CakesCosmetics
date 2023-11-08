@@ -59,6 +59,20 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
+    public static final RegistryObject<VanityArmorItem> STRAW_HAT = ITEMS.register("straw_hat",
+            () -> new StrawHatItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.HEAD,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
+    public static final RegistryObject<VanityArmorItem> WIZARDS_HAT = ITEMS.register("wizards_hat",
+            () -> new WizardsHatItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.HEAD,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
 
     //CHEST
     public static final RegistryObject<VanityArmorItem> BANDOLIER = ITEMS.register("bandolier",
@@ -71,10 +85,11 @@ public class ModItems {
     public static final RegistryObject<VanityArmorItem> HOLSTERED_BELT = ITEMS.register("holstered_belt",
             () -> new HolsteredBeltItem(
                     ModArmorMaterials.VANITY_MATERIAL,
-                    EquipmentSlot.CHEST,
+                    EquipmentSlot.LEGS,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -1,10 +1,7 @@
 package net.loworbitstation.cakescosmetics.block.entity;
 
-import com.mojang.datafixers.types.Type;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
-import net.minecraft.Util;
-import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

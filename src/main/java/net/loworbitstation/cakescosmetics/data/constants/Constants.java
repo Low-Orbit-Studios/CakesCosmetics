@@ -1,5 +1,8 @@
 package net.loworbitstation.cakescosmetics.data.constants;
 
+import mezz.jei.api.constants.ModIds;
+import net.minecraft.resources.ResourceLocation;
+
 public class Constants {
     //Keywords, resource locations, ids
     /**Used as path part for serializers and recipes*/
@@ -9,6 +12,21 @@ public class Constants {
     public static final String SEWING_STATION_INGREDIENT_KEY = "ingredient";
     /**The keyword used in recipes to mark the output of the recipe.*/
     public static final String SEWING_STATION_OUTPUT_KEY = "result";
+
+    /**The x coord of input slot in GUI.*/
+    public static final int SEWING_STATION_INPUT_SLOT_X = 20;
+    /**The y coord of input slot in GUI.*/
+    public static final int SEWING_STATION_INPUT_SLOT_Y = 33;
+    /**The x coord of output slot in GUI.*/
+    public static final int SEWING_STATION_OUTPUT_SLOT_X = 143;
+    /**The y coord of output slot in GUI.*/
+    public static final int SEWING_STATION_OUTPUT_SLOT_Y = 33;
+    public static final ResourceLocation RECIPE_GUI_VANILLA_FROM_JEI = new ResourceLocation(ModIds.JEI_ID, "textures/gui/gui_vanilla.png");
+    public static final int SEWING_STATION_INPUT_SLOT_JEI_X = 1;
+    public static final int SEWING_STATION_INPUT_SLOT_JEI_Y = 9;
+    public static final int SEWING_STATION_OUTPUT_SLOT_JEI_X = 61;
+    public static final int SEWING_STATION_OUTPUT_SLOT_JEI_Y = 9;
+    public static final String SEWING_STATION_GUI_RES_LOCATION = "textures/gui/container/stonecutter.png";
 
     //Data values
     public static final int ANIM_CONTROLLER_TRANSITION_LENGTH_TICKS = 20;

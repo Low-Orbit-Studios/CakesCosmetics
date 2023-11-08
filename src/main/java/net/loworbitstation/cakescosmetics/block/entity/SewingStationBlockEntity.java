@@ -120,7 +120,6 @@ public class SewingStationBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static void craftItem(SewingStationBlockEntity pEntity){
-        //TODO optional if needed https://youtu.be/uP3jfKrWgro?list=PLKGarocXCE1HrC60yuTNTGRoZc6hf5Uvl&t=1018
         if(hasRecipe(pEntity)){
             pEntity.itemHandler.extractItem(INPUT_SLOT_ID,1, false);
             pEntity.itemHandler.setStackInSlot(OUTPUT_SLOT_ID, new ItemStack(ModItems.CAPTAINS_HAT.get()

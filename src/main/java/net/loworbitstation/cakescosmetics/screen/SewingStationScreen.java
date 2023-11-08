@@ -17,9 +17,11 @@ import net.minecraft.world.item.crafting.StonecutterRecipe;
 
 import java.util.List;
 
+import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_GUI_RES_LOCATION;
+
 public class SewingStationScreen extends AbstractContainerScreen<SewingStationMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(CakesCosmetics.MOD_ID,"textures/gui/container/sewing_station_gui.png");
+            new ResourceLocation("minecraft",SEWING_STATION_GUI_RES_LOCATION);
 
     //From StonecutterScreen.java
     private boolean displayRecipes;

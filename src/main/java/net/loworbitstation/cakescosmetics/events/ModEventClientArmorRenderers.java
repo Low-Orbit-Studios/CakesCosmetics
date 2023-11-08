@@ -20,5 +20,7 @@ public class ModEventClientArmorRenderers {
         GeoArmorRenderer.registerArmorRenderer(HornsItem.class, () -> new HornsRenderer());
         GeoArmorRenderer.registerArmorRenderer(SombreroItem.class, () -> new SombreroRenderer());
         GeoArmorRenderer.registerArmorRenderer(TopHatItem.class, () -> new TopHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(StrawHatItem.class, () -> new StrawHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(WizardsHatItem.class, () -> new WizardsHatRenderer());
     }
 }
