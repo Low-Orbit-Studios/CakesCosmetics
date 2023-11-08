@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "forge:string"
+    },
+    "D": {
+      "item": "minecraft:polished_deepslate"
+    },
+    "W": {
+      "tag": "minecraft:wool_carpets"
+    }
+  },
+  "pattern": [
+    " WW",
+    "SPP",
+    "SDD"
+  ],
+  "result": {
+    "item": "cakescosmetics:sewing_station"
+  }
+}

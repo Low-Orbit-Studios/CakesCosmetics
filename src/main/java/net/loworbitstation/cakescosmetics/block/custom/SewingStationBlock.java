@@ -31,7 +31,7 @@ public class SewingStationBlock extends BaseEntityBlock {
         super(pProperties);
     }
     //Voxels eat a lot of processor. Keep that in mind to simplify the voxel shape as much as possible!
-    private static final VoxelShape SHAPE = Block.box(0, 00,0,16,10,16);
+    private static final VoxelShape SHAPE = Block.box(0, 00,0,16,16,16);
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
