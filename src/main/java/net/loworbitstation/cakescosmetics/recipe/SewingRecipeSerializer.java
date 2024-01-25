@@ -40,7 +40,7 @@ public class SewingRecipeSerializer implements RecipeSerializer<SewingStationRec
         inputs.set(0, Ingredient.fromNetwork(pBuffer));
 
         ItemStack output = pBuffer.readItem();
-        return new SewingStationRecipe(GROUP_ID, pRecipeId.toString(), inputs.get(0), output);
+        return new SewingStationRecipe(pRecipeId, GROUP_ID.toString(), inputs.get(0), output);
     }
 
     //order and amount of fields in fromNetwork and toNetwork have to match!!
