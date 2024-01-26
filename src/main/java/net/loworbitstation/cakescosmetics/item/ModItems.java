@@ -85,7 +85,7 @@ public class ModItems {
     public static final RegistryObject<VanityArmorItem> HOLSTERED_BELT = ITEMS.register("holstered_belt",
             () -> new HolsteredBeltItem(
                     ModArmorMaterials.VANITY_MATERIAL,
-                    EquipmentSlot.LEGS,
+                    EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
