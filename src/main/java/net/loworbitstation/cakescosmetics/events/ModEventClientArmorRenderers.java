@@ -13,14 +13,20 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 public class ModEventClientArmorRenderers {
     @SubscribeEvent
     public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
+        GeoArmorRenderer.registerArmorRenderer(ArrowQuiverItem.class, () -> new ArrowQuiverRenderer());
         GeoArmorRenderer.registerArmorRenderer(BandolierItem.class, () -> new BandolierRenderer());
         GeoArmorRenderer.registerArmorRenderer(CaptainHatItem.class, () -> new CaptainHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasHatItem.class, () -> new ChristmasHatRenderer());
         GeoArmorRenderer.registerArmorRenderer(CowboyHatItem.class, () -> new CowboyHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(DragonSkullItem.class, () -> new DragonSkullRenderer());
         GeoArmorRenderer.registerArmorRenderer(HolsteredBeltItem.class, () -> new HolsteredBeltRenderer());
         GeoArmorRenderer.registerArmorRenderer(HornsItem.class, () -> new HornsRenderer());
+        GeoArmorRenderer.registerArmorRenderer(PirateHatItem.class, () -> new PirateHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(SkullItem.class, () -> new SkullRenderer());
         GeoArmorRenderer.registerArmorRenderer(SombreroItem.class, () -> new SombreroRenderer());
         GeoArmorRenderer.registerArmorRenderer(TopHatItem.class, () -> new TopHatRenderer());
         GeoArmorRenderer.registerArmorRenderer(StrawHatItem.class, () -> new StrawHatRenderer());
+        GeoArmorRenderer.registerArmorRenderer(WingsItem.class, () -> new WingsRenderer());
         GeoArmorRenderer.registerArmorRenderer(WizardsHatItem.class, () -> new WizardsHatRenderer());
     }
 }

@@ -31,6 +31,13 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
+    public static final RegistryObject<VanityArmorItem> CHRISTMAS_HAT = ITEMS.register("christmas_hat",
+            () -> new ChristmasHatItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.HEAD,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
     public static final RegistryObject<VanityArmorItem> COWBOY_HAT = ITEMS.register("cowboy_hat",
             () -> new CowboyHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
@@ -38,8 +45,29 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
+    public static final RegistryObject<VanityArmorItem> DRAGON_SKULL = ITEMS.register("dragon_skull",
+            () -> new DragonSkullItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.HEAD,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
     public static final RegistryObject<VanityArmorItem> HORNS = ITEMS.register("horns",
             () -> new HornsItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.HEAD,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
+    public static final RegistryObject<VanityArmorItem> PIRATE_HAT = ITEMS.register("pirate_hat",
+            () -> new PirateHatItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.HEAD,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
+    public static final RegistryObject<VanityArmorItem> SKULL = ITEMS.register("skull",
+            () -> new SkullItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
@@ -66,6 +94,7 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
             )
     );
+
     public static final RegistryObject<VanityArmorItem> WIZARDS_HAT = ITEMS.register("wizards_hat",
             () -> new WizardsHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
@@ -75,6 +104,13 @@ public class ModItems {
     );
 
     //CHEST
+    public static final RegistryObject<VanityArmorItem> ARROW_QUIVER = ITEMS.register("arrow_quiver",
+            () -> new ArrowQuiverItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.CHEST,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
     public static final RegistryObject<VanityArmorItem> BANDOLIER = ITEMS.register("bandolier",
             () -> new BandolierItem(
                 ModArmorMaterials.VANITY_MATERIAL,
@@ -84,6 +120,13 @@ public class ModItems {
         );
     public static final RegistryObject<VanityArmorItem> HOLSTERED_BELT = ITEMS.register("holstered_belt",
             () -> new HolsteredBeltItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    EquipmentSlot.CHEST,
+                    new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
+            )
+    );
+    public static final RegistryObject<VanityArmorItem> WINGS = ITEMS.register("wings",
+            () -> new WingsItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModCreativeModeTab.CAKES_COSMETICS_TAB)
