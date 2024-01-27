@@ -4,9 +4,9 @@ import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.item.BandolierItem;
 import net.loworbitstation.cakescosmetics.item.SombreroItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SombreroModel extends AnimatedGeoModel<SombreroItem> {
+public class SombreroModel extends GeoModel<SombreroItem> {
     @Override
     public ResourceLocation getModelResource(SombreroItem object) {
         return new ResourceLocation(CakesCosmetics.MOD_ID, "geo/sombrero.geo.json");

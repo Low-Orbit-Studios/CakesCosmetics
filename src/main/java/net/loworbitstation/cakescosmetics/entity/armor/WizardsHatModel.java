@@ -3,9 +3,9 @@ package net.loworbitstation.cakescosmetics.entity.armor;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.item.WizardsHatItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class WizardsHatModel extends AnimatedGeoModel<WizardsHatItem> {
+public class WizardsHatModel extends GeoModel<WizardsHatItem> {
     @Override
     public ResourceLocation getModelResource(WizardsHatItem object) {
         return new ResourceLocation(CakesCosmetics.MOD_ID, "geo/wizards_hat.geo.json");

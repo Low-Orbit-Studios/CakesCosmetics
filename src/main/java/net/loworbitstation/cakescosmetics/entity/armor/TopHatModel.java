@@ -4,9 +4,9 @@ import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.item.BandolierItem;
 import net.loworbitstation.cakescosmetics.item.TopHatItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class TopHatModel extends AnimatedGeoModel<TopHatItem> {
+public class TopHatModel extends GeoModel<TopHatItem> {
     @Override
     public ResourceLocation getModelResource(TopHatItem object) {
         return new ResourceLocation(CakesCosmetics.MOD_ID, "geo/top_hat.geo.json");

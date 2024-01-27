@@ -4,9 +4,9 @@ import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.item.BandolierItem;
 import net.loworbitstation.cakescosmetics.item.CowboyHatItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CowboyHatModel extends AnimatedGeoModel<CowboyHatItem> {
+public class CowboyHatModel extends GeoModel<CowboyHatItem> {
     @Override
     public ResourceLocation getModelResource(CowboyHatItem object) {
         return new ResourceLocation(CakesCosmetics.MOD_ID, "geo/cowboy_hat.geo.json");

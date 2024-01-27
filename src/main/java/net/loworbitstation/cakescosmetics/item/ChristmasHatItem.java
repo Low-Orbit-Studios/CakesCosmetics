@@ -1,21 +1,23 @@
 package net.loworbitstation.cakescosmetics.item;
 
+import net.loworbitstation.cakescosmetics.entity.armor.BandolierRenderer;
+import net.loworbitstation.cakescosmetics.entity.armor.ChristmasHatRenderer;
+import net.loworbitstation.cakescosmetics.entity.armor.ModGeoArmorDefaultRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.manager.AnimationData;
+
+
 
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.ANIM_CONTROLLER_TRANSITION_LENGTH_TICKS;
 
 public class ChristmasHatItem extends VanityArmorItem {
-    public ChristmasHatItem(ArmorMaterial pMaterial, EquipmentSlot pSlot, Properties pProperties) {
-        super(pMaterial, pSlot, pProperties);
+    public ChristmasHatItem(ArmorMaterial pMaterial, Type type, Properties pProperties) {
+        super(pMaterial, type, pProperties);
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<ChristmasHatItem>(this, "controller",
-                ANIM_CONTROLLER_TRANSITION_LENGTH_TICKS, this::predicate));
+    protected ModGeoArmorDefaultRenderer<?> getRenderer() {
+        return new ChristmasHatRenderer();
     }
 
 }

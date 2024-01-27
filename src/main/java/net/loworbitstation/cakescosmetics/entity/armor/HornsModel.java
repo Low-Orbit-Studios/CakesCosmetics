@@ -4,9 +4,9 @@ import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.item.BandolierItem;
 import net.loworbitstation.cakescosmetics.item.HornsItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class HornsModel extends AnimatedGeoModel<HornsItem> {
+public class HornsModel extends GeoModel<HornsItem> {
     @Override
     public ResourceLocation getModelResource(HornsItem object) {
         return new ResourceLocation(CakesCosmetics.MOD_ID, "geo/horns.geo.json");

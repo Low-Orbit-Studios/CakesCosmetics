@@ -1,21 +1,23 @@
 package net.loworbitstation.cakescosmetics.item;
 
+import net.loworbitstation.cakescosmetics.entity.armor.BandolierRenderer;
+import net.loworbitstation.cakescosmetics.entity.armor.ModGeoArmorDefaultRenderer;
+import net.loworbitstation.cakescosmetics.entity.armor.SkullRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.manager.AnimationData;
+
+
 
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.ANIM_CONTROLLER_TRANSITION_LENGTH_TICKS;
 
 public class SkullItem extends VanityArmorItem {
-    public SkullItem(ArmorMaterial pMaterial, EquipmentSlot pSlot, Properties pProperties) {
-        super(pMaterial, pSlot, pProperties);
+    public SkullItem(ArmorMaterial pMaterial, Type type, Properties pProperties) {
+        super(pMaterial, type, pProperties);
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<SkullItem>(this, "controller",
-                ANIM_CONTROLLER_TRANSITION_LENGTH_TICKS, this::predicate));
+    protected ModGeoArmorDefaultRenderer<?> getRenderer() {
+        return new SkullRenderer();
     }
 
 }

@@ -4,9 +4,9 @@ import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.item.BandolierItem;
 import net.loworbitstation.cakescosmetics.item.HolsteredBeltItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class HolsteredBeltModel  extends AnimatedGeoModel<HolsteredBeltItem> {
+public class HolsteredBeltModel  extends GeoModel<HolsteredBeltItem> {
     @Override
     public ResourceLocation getModelResource(HolsteredBeltItem object) {
         return new ResourceLocation(CakesCosmetics.MOD_ID, "geo/holstered_belt.geo.json");

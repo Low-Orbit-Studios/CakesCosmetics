@@ -3,9 +3,9 @@ package net.loworbitstation.cakescosmetics.entity.armor;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.item.SkullItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SkullModel extends AnimatedGeoModel<SkullItem> {
+public class SkullModel extends GeoModel<SkullItem> {
     @Override
     public ResourceLocation getModelResource(SkullItem object) {
         return new ResourceLocation(CakesCosmetics.MOD_ID, "geo/skull.geo.json");
