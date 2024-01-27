@@ -59,7 +59,7 @@ public class SewingStationScreen extends AbstractContainerScreen<SewingStationMe
 
         this.blit(pPoseStack, x, y, 0,0,imageWidth, imageHeight);
 
-        int k = (int)(41.0F * this.scrollOffset);
+        int k = (int)(41.0F * this.scrollOffs);
         this.blit(pPoseStack, x + 119, y + 15 + k, 176 + (this.isScrollBarActive() ? 0 : 12), 0, 12, 15);
         int l = this.leftPos + 52;
         int i1 = this.topPos + 14;
