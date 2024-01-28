@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
 import net.loworbitstation.cakescosmetics.recipe.SewingStationRecipe;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -48,27 +49,42 @@ public class SewingStationScreen extends AbstractContainerScreen<SewingStationMe
         super.init();
     }
 
-    //From StonecutterScreen.java
     @Override
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-
-        this.blit(pPoseStack, x, y, 0,0,imageWidth, imageHeight);
-
+    protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+        this.renderBackground(pGuiGraphics);
+        int i = this.leftPos;
+        int j = this.topPos;
+        pGuiGraphics.blit(TEXTURE, i, j, 0, 0, this.imageWidth, this.imageHeight);
         int k = (int)(41.0F * this.scrollOffs);
-        this.blit(pPoseStack, x + 119, y + 15 + k, 176 + (this.isScrollBarActive() ? 0 : 12), 0, 12, 15);
+        pGuiGraphics.blit(TEXTURE, i + 119, j + 15 + k, 176 + (this.isScrollBarActive() ? 0 : 12), 0, 12, 15);
         int l = this.leftPos + 52;
         int i1 = this.topPos + 14;
         int j1 = this.startIndex + 12;
-        this.renderButtons(pPoseStack, pMouseX, pMouseY, l, i1, j1);
-        this.renderRecipes(l, i1, j1);
+        this.renderButtons(pGuiGraphics, pMouseX, pMouseY, l, i1, j1);
+        this.renderRecipes(pGuiGraphics, l, i1, j1);
     }
+
     //From StonecutterScreen.java
-    private void renderButtons(PoseStack pPoseStack, int pMouseX, int pMouseY, int pX, int pY, int pLastVisibleElementIndex) {
+//    @Override
+//    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+//        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+//        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+//        RenderSystem.setShaderTexture(0, TEXTURE);
+//        int x = (width - imageWidth) / 2;
+//        int y = (height - imageHeight) / 2;
+//
+//        this.blit(pPoseStack, x, y, 0,0,imageWidth, imageHeight);
+//
+//        int k = (int)(41.0F * this.scrollOffs);
+//        this.blit(pPoseStack, x + 119, y + 15 + k, 176 + (this.isScrollBarActive() ? 0 : 12), 0, 12, 15);
+//        int l = this.leftPos + 52;
+//        int i1 = this.topPos + 14;
+//        int j1 = this.startIndex + 12;
+//        this.renderButtons(pPoseStack, pMouseX, pMouseY, l, i1, j1);
+//        this.renderRecipes(l, i1, j1);
+//    }
+    //From StonecutterScreen.java
+    private void renderButtons(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int pX, int pY, int pLastVisibleElementIndex) {
         for(int i = this.startIndex; i < pLastVisibleElementIndex && i < this.menu.getNumRecipes(); ++i) {
             int j = i - this.startIndex;
             int k = pX + j % 4 * 16;
@@ -81,12 +97,12 @@ public class SewingStationScreen extends AbstractContainerScreen<SewingStationMe
                 j1 += 36;
             }
 
-            this.blit(pPoseStack, k, i1 - 1, 0, j1, 16, 18);
+            pGuiGraphics.blit(TEXTURE, k, i1 - 1, 0, j1, 16, 18);
         }
 
     }
     //From StonecutterScreen.java
-    private void renderRecipes(int pLeft, int pTop, int pRecipeIndexOffsetMax) {
+    private void renderRecipes(GuiGraphics pGuiGraphics, int pLeft, int pTop, int pRecipeIndexOffsetMax) {
         List<SewingStationRecipe> list = this.menu.getRecipes();
 
         for(int i = this.startIndex; i < pRecipeIndexOffsetMax && i < this.menu.getNumRecipes(); ++i) {
@@ -94,7 +110,7 @@ public class SewingStationScreen extends AbstractContainerScreen<SewingStationMe
             int k = pLeft + j % 4 * 16;
             int l = j / 4;
             int i1 = pTop + l * 18 + 2;
-            this.minecraft.getItemRenderer().renderAndDecorateItem(list.get(i).getResultItem(), k, i1);
+            pGuiGraphics.renderItem(list.get(i).getResultItem(this.minecraft.level.registryAccess()), k, i1);
         }
 
     }
@@ -171,10 +187,22 @@ public class SewingStationScreen extends AbstractContainerScreen<SewingStationMe
         }
 
     }
+//    @Override
+//    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+//        renderBackground(pPoseStack);
+//        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+//        renderTooltip(pPoseStack, pMouseX, pMouseY);
+//    }
+    /**
+     * Renders the graphical user interface (GUI) element.
+     * @param pGuiGraphics the GuiGraphics object used for rendering.
+     * @param pMouseX the x-coordinate of the mouse cursor.
+     * @param pMouseY the y-coordinate of the mouse cursor.
+     * @param pPartialTick the partial tick time.
+     */
     @Override
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
-        renderBackground(pPoseStack);
-        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-        renderTooltip(pPoseStack, pMouseX, pMouseY);
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
     }
 }

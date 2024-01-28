@@ -138,7 +138,7 @@ public class SewingStationBlockEntity extends BlockEntity implements MenuProvide
         Optional<SewingStationRecipe> recipe = level.getRecipeManager().getRecipeFor(SewingRecipeType.INSTANCE, inventory, level);
 
         var hasCorrectIngredientInInputSlot = recipe.isPresent()
-                && canInsertItemIntoOutputSlot(inventory, recipe.get().getResultItem())
+                && canInsertItemIntoOutputSlot(inventory, recipe.get().getResultItem(pEntity.level.registryAccess()))
                 && canInsertAmountIntoOutputSlot(inventory);
 
         return hasCorrectIngredientInInputSlot;

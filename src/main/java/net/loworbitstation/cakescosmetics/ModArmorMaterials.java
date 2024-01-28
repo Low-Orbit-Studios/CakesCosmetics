@@ -4,12 +4,13 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum ModArmorMaterials  implements ArmorMaterial {
+public enum ModArmorMaterials implements ArmorMaterial {
 
     VANITY_MATERIAL("vanity", 37, new int[]{0, 0, 0, 0}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> {
         return null;
@@ -37,13 +38,14 @@ public enum ModArmorMaterials  implements ArmorMaterial {
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
 
-
-    public int getDurabilityForSlot(EquipmentSlot p_40484_) {
-        return HEALTH_PER_SLOT[p_40484_.getIndex()] * this.durabilityMultiplier;
+    @Override
+    public int getDurabilityForType(ArmorItem.Type pType) {
+        return HEALTH_PER_SLOT[pType.ordinal()] * this.durabilityMultiplier;
     }
 
-    public int getDefenseForSlot(EquipmentSlot p_40487_) {
-        return this.slotProtections[p_40487_.getIndex()];
+    @Override
+    public int getDefenseForType(ArmorItem.Type pType) {
+        return this.slotProtections[pType.ordinal()];
     }
 
     public int getEnchantmentValue() {

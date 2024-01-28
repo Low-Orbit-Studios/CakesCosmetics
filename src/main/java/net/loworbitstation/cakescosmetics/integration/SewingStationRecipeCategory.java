@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_GUI_RES_LOCATION;
+import static net.loworbitstation.cakescosmetics.data.constants.Constants.SEWING_STATION_PATH;
 import static net.loworbitstation.cakescosmetics.integration.JEICakesCosmeticsPlugin.SEWING_TYPE;
 
 public class SewingStationRecipeCategory implements IRecipeCategory<SewingStationRecipe> {
@@ -39,7 +40,7 @@ public class SewingStationRecipeCategory implements IRecipeCategory<SewingStatio
 
     @Override
     public Component getTitle() {
-        return Component.literal("Sewing Station");
+        return Component.translatable("block." + CakesCosmetics.MOD_ID + SEWING_STATION_PATH);
     }
 
     @Override
@@ -62,6 +63,6 @@ public class SewingStationRecipeCategory implements IRecipeCategory<SewingStatio
         builder.addSlot(RecipeIngredientRole.OUTPUT
                 , Constants.SEWING_STATION_OUTPUT_SLOT_JEI_X
                 , Constants.SEWING_STATION_OUTPUT_SLOT_JEI_Y
-        ).addItemStack(recipe.getResultItem());
+        ).addItemStack(recipe.getResultItem(null));
     }
 }

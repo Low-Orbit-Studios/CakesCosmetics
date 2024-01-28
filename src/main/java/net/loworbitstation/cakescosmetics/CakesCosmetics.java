@@ -3,12 +3,15 @@ package net.loworbitstation.cakescosmetics;
 import com.mojang.logging.LogUtils;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
 import net.loworbitstation.cakescosmetics.block.entity.ModBlockEntities;
+import net.loworbitstation.cakescosmetics.item.ModCreativeModeTabs;
 import net.loworbitstation.cakescosmetics.recipe.ModRecipes;
 import net.loworbitstation.cakescosmetics.screen.ModMenuTypes;
 import net.loworbitstation.cakescosmetics.screen.SewingStationScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +20,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.loworbitstation.cakescosmetics.item.ModItems;
 import org.slf4j.Logger;
-import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CakesCosmetics.MOD_ID)
@@ -34,7 +36,7 @@ public class CakesCosmetics
         ModItems.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-        GeckoLib.initialize();
+        ModCreativeModeTabs.register(modEventBus);
 
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
@@ -50,7 +52,6 @@ public class CakesCosmetics
     {
 
     }
-
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

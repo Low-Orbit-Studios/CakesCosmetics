@@ -52,6 +52,6 @@ public class SewingRecipeSerializer implements RecipeSerializer<SewingStationRec
         var ingredients = pRecipe.getIngredients();
         ingredients.get(0).toNetwork(pBuffer);
 
-        pBuffer.writeItemStack(pRecipe.getResultItem(), false);
+        pBuffer.writeItemStack(pRecipe.getResultItem(null), false);
     }
 }

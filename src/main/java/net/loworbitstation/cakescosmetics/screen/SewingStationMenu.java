@@ -65,14 +65,14 @@ public class SewingStationMenu extends AbstractContainerMenu {
     final ResultContainer resultContainer = new ResultContainer();
 
     public SewingStationMenu(int pContainerId, Inventory pPlayerInventory, FriendlyByteBuf extraData) {
-        this(pContainerId, pPlayerInventory, pPlayerInventory.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(pContainerId, pPlayerInventory, pPlayerInventory.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
     public SewingStationMenu(int pContainerId, Inventory pPlayerInventory, BlockEntity entity) {
         super(ModMenuTypes.SEWING_STATION_MENU.get(), pContainerId);
         checkContainerSize(pPlayerInventory, SEWING_STATION_SLOT_COUNT);
         blockEntity = (SewingStationBlockEntity) entity;
-        this.level = pPlayerInventory.player.level;
+        this.level = pPlayerInventory.player.level();
         this.access = ContainerLevelAccess.create(level, blockEntity.getBlockPos());;
 
         addPlayerInventory(pPlayerInventory);
@@ -93,8 +93,8 @@ public class SewingStationMenu extends AbstractContainerMenu {
 
                 //From StonecutterMenu.java
                 public void onTake(Player p_150672_, ItemStack p_150673_) {
-                    p_150673_.onCraftedBy(p_150672_.level, p_150672_, p_150673_.getCount());
-                    SewingStationMenu.this.resultContainer.awardUsedRecipes(p_150672_);
+                    p_150673_.onCraftedBy(p_150672_.level(), p_150672_, p_150673_.getCount());
+                    SewingStationMenu.this.resultContainer.awardUsedRecipes(p_150672_, this.getRelevantItems());
                     ItemStack itemstack = SewingStationMenu.this.inputSlot.remove(1);
                     if (!itemstack.isEmpty()) {
                         SewingStationMenu.this.setupResultSlot();
@@ -109,6 +109,10 @@ public class SewingStationMenu extends AbstractContainerMenu {
 
                     });
                     super.onTake(p_150672_, p_150673_);
+                }
+
+                private List<ItemStack> getRelevantItems() {
+                    return List.of(SewingStationMenu.this.inputSlot.getItem());
                 }
             });
         }
@@ -166,7 +170,7 @@ public class SewingStationMenu extends AbstractContainerMenu {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
             var sewingStationRecipe = this.recipes.get(this.selectedRecipeIndex.get());
             this.resultContainer.setRecipeUsed(sewingStationRecipe);
-            this.outputSlot.set(sewingStationRecipe.assemble(this.container));
+            this.outputSlot.set(sewingStationRecipe.assemble(this.container, this.level.registryAccess()));
         } else {
             this.outputSlot.set(ItemStack.EMPTY);
         }
@@ -203,7 +207,7 @@ public class SewingStationMenu extends AbstractContainerMenu {
             itemstack = itemstack1.copy();
 
             if (pIndex == SEWING_STATION_OUTPUT_SLOT_INDEX) {
-                item.onCraftedBy(itemstack1, pPlayer.level, pPlayer);
+                item.onCraftedBy(itemstack1, pPlayer.level(), pPlayer);
                 if (!this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX,
                         PLAYER_TOTAL_LAST_SLOT_INDEX, true)) {
                     return ItemStack.EMPTY;

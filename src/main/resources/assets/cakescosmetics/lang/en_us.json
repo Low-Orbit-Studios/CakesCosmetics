@@ -1,4 +1,9 @@
 {
+
+  "block.cakescosmetics.sewing_station": "Sewing Station",
+
+  "creativetab.cakes_cosmetics_tab": "Cake's Cosmetics Tab",
+
   "item.cakescosmetics.cosmetics_template": "Cosmetics Template",
   "item.cakescosmetics.bandolier": "Bandolier",
   "item.cakescosmetics.captain_hat": "Captain Hat",
@@ -15,6 +20,4 @@
   "item.cakescosmetics.pirate_hat": "Pirate Hat",
   "item.cakescosmetics.skull": "Skull",
   "item.cakescosmetics.wings": "Wings",
-
-  "block.cakescosmetics.sewing_station": "Sewing Station"
 }
