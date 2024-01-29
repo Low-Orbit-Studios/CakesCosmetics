@@ -18,7 +18,7 @@
 				{
 					"name": "armorHead",
 					"parent": "bipedHead",
-					"pivot": [0, 24, -1],
+					"pivot": [0, 24, 0],
 					"rotation": [-10, 0, 0],
 					"cubes": [
 						{"origin": [-6, 30, -7], "size": [12, 3, 12], "inflate": -0.2, "uv": [0, 0]},
