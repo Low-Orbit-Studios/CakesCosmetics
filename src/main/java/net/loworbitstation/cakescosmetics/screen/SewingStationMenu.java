@@ -103,7 +103,7 @@ public class SewingStationMenu extends AbstractContainerMenu {
                     access.execute((level, levelPosConsumer) -> {
                         long l = level.getGameTime();
                         if (SewingStationMenu.this.lastSoundTime != l) {
-                            level.playSound((Player)null, levelPosConsumer, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
+                            level.playSound((Player)null, levelPosConsumer, SoundEvents.ARMOR_EQUIP_LEATHER, SoundSource.BLOCKS, 1.0F, 1.0F);
                             SewingStationMenu.this.lastSoundTime = l;
                         }
 
