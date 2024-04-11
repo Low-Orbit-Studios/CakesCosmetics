@@ -15,7 +15,7 @@ public class ModItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, CakesCosmetics.MOD_ID);
 
     //MISC
-    public static final RegistryObject<Item> COSMETICS_TEMPLATE = ITEMS.register("cosmetics_template",
+    public static final RegistryObject<Item> SEWING_KIT = ITEMS.register("sewing_kit",
             () -> new Item(
                     new Item.Properties()
             )
