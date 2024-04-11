@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "cakescosmetics:item/cosmetics_template"
+    "layer0": "cakescosmetics:item/sewing_kit"
   }
 }
