@@ -75,9 +75,6 @@ public class SewingStationMenu extends AbstractContainerMenu {
         this.level = pPlayerInventory.player.level;
         this.access = ContainerLevelAccess.create(level, blockEntity.getBlockPos());;
 
-        addPlayerInventory(pPlayerInventory);
-        addPlayerHotbar(pPlayerInventory);
-
         var itemHandlerCapability = this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER);
         if(itemHandlerCapability.isPresent()){
             //Position values akin to Stonecutter's.
@@ -116,6 +113,8 @@ public class SewingStationMenu extends AbstractContainerMenu {
             CakesCosmetics.LOGGER.error("No item handler capability found upon creating Sewing Station Menu!");
         }
 
+        addPlayerInventory(pPlayerInventory);
+        addPlayerHotbar(pPlayerInventory);
         addDataSlot(selectedRecipeIndex);
     }
 
@@ -201,33 +200,38 @@ public class SewingStationMenu extends AbstractContainerMenu {
             ItemStack itemstack1 = slot.getItem();
             Item item = itemstack1.getItem();
             itemstack = itemstack1.copy();
+            //Player eq slots index for begin and end, offset by the count of
+            //sewing station slots count. Additionally, offset hotbar start index.
+            var firstPlayerOffsetEqSlotIndex = PLAYER_EQ_FIRST_SLOT_INDEX + SEWING_STATION_SLOT_COUNT;
+            var lastPlayerOffsetEqSlotIndex = PLAYER_TOTAL_LAST_SLOT_INDEX + SEWING_STATION_SLOT_COUNT;
+            var playerHotbarOffsetEqSlotIndex = PLAYER_HOTBAR_FIRST_SLOT_INDEX + SEWING_STATION_SLOT_COUNT;
 
             if (pIndex == SEWING_STATION_OUTPUT_SLOT_INDEX) {
                 item.onCraftedBy(itemstack1, pPlayer.level, pPlayer);
-                if (!this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX,
-                        PLAYER_TOTAL_LAST_SLOT_INDEX, true)) {
+                if (!this.moveItemStackTo(itemstack1, firstPlayerOffsetEqSlotIndex,
+                        lastPlayerOffsetEqSlotIndex, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onQuickCraft(itemstack1, itemstack);
             } else if (pIndex == SEWING_STATION_INPUT_SLOT_INDEX) {
-                if (!this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX,
-                        PLAYER_TOTAL_LAST_SLOT_INDEX,
+                if (!this.moveItemStackTo(itemstack1, firstPlayerOffsetEqSlotIndex,
+                        lastPlayerOffsetEqSlotIndex,
                         false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (this.level.getRecipeManager().getRecipeFor(RecipeType.STONECUTTING, new SimpleContainer(itemstack1), this.level).isPresent()) {
+            } else if (this.level.getRecipeManager().getRecipeFor(SEWING_RECIPE_TYPE.get(), new SimpleContainer(itemstack1), this.level).isPresent()) {
                 if (!this.moveItemStackTo(itemstack1, SEWING_STATION_INPUT_SLOT_INDEX, SEWING_STATION_OUTPUT_SLOT_INDEX, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (pIndex >= PLAYER_EQ_FIRST_SLOT_INDEX && pIndex < PLAYER_EQ_LAST_SLOT_INDEX) {
+            } else if (pIndex >= firstPlayerOffsetEqSlotIndex  && pIndex < playerHotbarOffsetEqSlotIndex) {
                 if (!this.moveItemStackTo(itemstack1,
-                        PLAYER_EQ_LAST_SLOT_INDEX,
-                        PLAYER_TOTAL_LAST_SLOT_INDEX,
+                        playerHotbarOffsetEqSlotIndex,
+                        lastPlayerOffsetEqSlotIndex,
                         false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (pIndex >= PLAYER_EQ_LAST_SLOT_INDEX && pIndex < PLAYER_TOTAL_LAST_SLOT_INDEX && !this.moveItemStackTo(itemstack1, PLAYER_EQ_FIRST_SLOT_INDEX, PLAYER_EQ_LAST_SLOT_INDEX, false)) {
+            } else if (pIndex >= playerHotbarOffsetEqSlotIndex  && pIndex < lastPlayerOffsetEqSlotIndex  && !this.moveItemStackTo(itemstack1, firstPlayerOffsetEqSlotIndex, playerHotbarOffsetEqSlotIndex, false)) {
                 return ItemStack.EMPTY;
             }
 
