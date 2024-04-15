@@ -16,5 +16,7 @@
   "item.cakescosmetics.skull": "Skull",
   "item.cakescosmetics.wings": "Wings",
 
-  "block.cakescosmetics.sewing_station": "Sewing Station"
+  "block.cakescosmetics.sewing_station": "Sewing Station",
+
+  "itemGroup.cakes_cosmetics_tab": "Cakes Cosmetics"
 }
