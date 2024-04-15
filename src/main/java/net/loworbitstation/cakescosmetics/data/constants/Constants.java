@@ -21,7 +21,7 @@ public class Constants {
     public static final int SEWING_STATION_OUTPUT_SLOT_X = 143;
     /**The y coord of output slot in GUI.*/
     public static final int SEWING_STATION_OUTPUT_SLOT_Y = 33;
-    public static final ResourceLocation RECIPE_GUI_VANILLA_FROM_JEI = new ResourceLocation(ModIds.JEI_ID, "textures/gui/gui_vanilla.png");
+    public static final ResourceLocation RECIPE_GUI_VANILLA_FROM_JEI = new ResourceLocation(ModIds.JEI_ID, "textures/jei/gui/gui_vanilla.png");
     public static final int SEWING_STATION_INPUT_SLOT_JEI_X = 1;
     public static final int SEWING_STATION_INPUT_SLOT_JEI_Y = 9;
     public static final int SEWING_STATION_OUTPUT_SLOT_JEI_X = 61;

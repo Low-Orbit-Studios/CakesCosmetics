@@ -40,7 +40,7 @@ public class SewingStationRecipeCategory implements IRecipeCategory<SewingStatio
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block." + CakesCosmetics.MOD_ID + SEWING_STATION_PATH);
+        return Component.translatable("block." + CakesCosmetics.MOD_ID + "." + SEWING_STATION_PATH);
     }
 
     @Override
