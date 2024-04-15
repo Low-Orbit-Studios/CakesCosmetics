@@ -1,24 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "boat",
   "key": {
-    "F": {
-      "tag": "forge:feathers"
-    },
     "I": {
-      "tag": "forge:dyes"
+      "tag": "forge:nuggets/iron"
     },
-    "S": {
+    "T": {
       "item": "minecraft:stick"
     },
-    "P": {
-      "item": "minecraft:paper"
+    "S": {
+      "tag": "forge:string"
     }
   },
   "pattern": [
-    " F ",
-    "SPS",
-    " I "
+    "TSI",
+    "SI ",
+    "I  "
   ],
   "result": {
     "item": "cakescosmetics:sewing_kit"
