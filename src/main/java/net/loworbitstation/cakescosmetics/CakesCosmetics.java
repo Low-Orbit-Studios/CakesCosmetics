@@ -20,6 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.loworbitstation.cakescosmetics.item.ModItems;
 import org.slf4j.Logger;
+import software.bernie.geckolib.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CakesCosmetics.MOD_ID)
@@ -32,6 +33,7 @@ public class CakesCosmetics
     public CakesCosmetics()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        GeckoLib.initialize();
 
         ModItems.register(modEventBus);
         // Register the commonSetup method for modloading

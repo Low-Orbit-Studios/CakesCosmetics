@@ -4,6 +4,8 @@ import net.loworbitstation.cakescosmetics.entity.armor.BandolierRenderer;
 import net.loworbitstation.cakescosmetics.entity.armor.ModGeoArmorDefaultRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 
@@ -14,6 +16,7 @@ public class BandolierItem extends VanityArmorItem {
         super(pMaterial, type, pProperties);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     protected ModGeoArmorDefaultRenderer<?> getRenderer() {
         return new BandolierRenderer();

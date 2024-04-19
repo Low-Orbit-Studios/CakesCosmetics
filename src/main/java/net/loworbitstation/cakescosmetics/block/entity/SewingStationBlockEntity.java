@@ -1,8 +1,5 @@
 package net.loworbitstation.cakescosmetics.block.entity;
 
-import net.loworbitstation.cakescosmetics.block.ModBlocks;
-import net.loworbitstation.cakescosmetics.block.custom.SewingStationBlock;
-import net.loworbitstation.cakescosmetics.item.ModItems;
 import net.loworbitstation.cakescosmetics.recipe.SewingRecipeType;
 import net.loworbitstation.cakescosmetics.recipe.SewingStationRecipe;
 import net.loworbitstation.cakescosmetics.screen.SewingStationMenu;
@@ -10,12 +7,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -116,15 +111,6 @@ public class SewingStationBlockEntity extends BlockEntity implements MenuProvide
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, SewingStationBlockEntity blockEntity) {
         if(level.isClientSide()) {
             return;
-        }
-    }
-
-    private static void craftItem(SewingStationBlockEntity pEntity){
-        if(hasRecipe(pEntity)){
-            pEntity.itemHandler.extractItem(INPUT_SLOT_ID,1, false);
-            pEntity.itemHandler.setStackInSlot(OUTPUT_SLOT_ID, new ItemStack(ModItems.CAPTAINS_HAT.get()
-                    , pEntity.itemHandler.getStackInSlot(OUTPUT_SLOT_ID).getCount() + 1));
-            //WILL HAVE TO CHANGE LATER PROBABLY
         }
     }
     private static boolean hasRecipe(SewingStationBlockEntity pEntity){

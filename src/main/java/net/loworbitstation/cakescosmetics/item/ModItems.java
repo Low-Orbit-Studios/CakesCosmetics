@@ -1,6 +1,7 @@
 package net.loworbitstation.cakescosmetics.item;
 
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,21 +23,21 @@ public class ModItems {
     );
 
     //HEAD
-    public static final RegistryObject<VanityArmorItem> CAPTAINS_HAT = ITEMS.register("captain_hat",
+    public static final RegistryObject<ArmorItem> CAPTAINS_HAT = ITEMS.register("captain_hat",
             () -> new CaptainHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     Type.HELMET,
                     new Item.Properties()
             )
     );
-    public static final RegistryObject<VanityArmorItem> CHRISTMAS_HAT = ITEMS.register("christmas_hat",
+    public static final RegistryObject<ArmorItem> CHRISTMAS_HAT = ITEMS.register("christmas_hat",
             () -> new ChristmasHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     Type.HELMET,
                     new Item.Properties()
             )
     );
-    public static final RegistryObject<VanityArmorItem> COWBOY_HAT = ITEMS.register("cowboy_hat",
+    public static final RegistryObject<ArmorItem> COWBOY_HAT = ITEMS.register("cowboy_hat",
             () -> new CowboyHatItem(
                     ModArmorMaterials.VANITY_MATERIAL,
                     Type.HELMET,
