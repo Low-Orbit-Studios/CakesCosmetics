@@ -15,6 +15,7 @@ import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.network.GeckoLibNetwork;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.util.GeckoLibUtil;
@@ -53,7 +54,12 @@ public abstract class VanityArmorItem extends ArmorItem implements GeoItem {
     }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(DefaultAnimations.genericIdleController(this));
+        controllerRegistrar.add(new AnimationController<>(this, 20, state -> {
+            // Apply our generic idle animation.
+            // Whether it plays or not is decided down below.
+            state.setAnimation(DefaultAnimations.IDLE);
+            return PlayState.CONTINUE;
+        }));
     }
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
