@@ -1,9 +1,13 @@
 package net.loworbitstation.cakescosmetics.item;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import net.loworbitstation.cakescosmetics.entity.armor.ModGeoArmorDefaultRenderer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
@@ -44,6 +48,10 @@ public abstract class VanityArmorItem extends ArmorItem implements GeoItem {
                 return this.renderer;
             }
         });
+    }
+    @Override
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
+        return ImmutableMultimap.of();
     }
     @OnlyIn(Dist.CLIENT)
     protected abstract ModGeoArmorDefaultRenderer<?> getRenderer();
