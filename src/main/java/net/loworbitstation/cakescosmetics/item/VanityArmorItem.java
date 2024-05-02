@@ -1,7 +1,12 @@
 package net.loworbitstation.cakescosmetics.item;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import software.bernie.geckolib3.GeckoLib;
@@ -16,11 +21,13 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.UUID;
 import java.util.function.Consumer;
 
 import static net.loworbitstation.cakescosmetics.data.constants.Constants.ANIM_CONTROLLER_TRANSITION_LENGTH_TICKS;
 
 public class VanityArmorItem extends GeoArmorItem implements IAnimatable {
+
     protected AnimationFactory _animationFactory;
     public VanityArmorItem(ArmorMaterial pMaterial, EquipmentSlot pSlot, Properties pProperties) {
         super(pMaterial, pSlot, pProperties);
@@ -34,7 +41,10 @@ public class VanityArmorItem extends GeoArmorItem implements IAnimatable {
         //AbstractArrow
         //BowItem
     }
-
+    @Override
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
+        return ImmutableMultimap.of();
+    }
     @Override
     public AnimationFactory getFactory() {
         return _animationFactory;
