@@ -139,6 +139,22 @@ public class ModItems {
             ) {
             }
     );
+    public static final RegistryObject<VanityArmorItem> KASA_HAT = ITEMS.register("kasa_hat",
+            () -> new KasaHatItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.HELMET,
+                    new Item.Properties()
+            ) {
+            }
+    );
+    public static final RegistryObject<VanityArmorItem> SHEATHED_KATANA = ITEMS.register("sheathed_katana",
+            () -> new SheathedKatanaItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.CHESTPLATE,
+                    new Item.Properties()
+            ) {
+            }
+    );
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
