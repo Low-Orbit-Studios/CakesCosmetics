@@ -9,6 +9,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,9 +25,8 @@ public class ModBlocks {
     public final static DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CakesCosmetics.MOD_ID);
 
     public static final RegistryObject<Block> SEWING_STATION = registerBlock(SEWING_STATION_PATH,
-            () -> new SewingStationBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD)
-                    .strength(6f).requiresCorrectToolForDrops().noOcclusion()));
-            ;
+            () -> new SewingStationBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).strength(3f)));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
