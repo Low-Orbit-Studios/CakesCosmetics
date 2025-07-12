@@ -14,7 +14,7 @@ public class SombreroModel extends GeoModel<SombreroItem> {
 
     @Override
     public ResourceLocation getTextureResource(SombreroItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/sombrero_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/sombrero.png");
     }
 
     @Override

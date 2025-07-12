@@ -13,7 +13,7 @@ public class BandolierModel extends GeoModel<BandolierItem> {
 
     @Override
     public ResourceLocation getTextureResource(BandolierItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/bandolier_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/bandolier.png");
     }
 
     @Override

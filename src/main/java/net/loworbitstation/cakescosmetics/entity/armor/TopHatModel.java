@@ -14,7 +14,7 @@ public class TopHatModel extends GeoModel<TopHatItem> {
 
     @Override
     public ResourceLocation getTextureResource(TopHatItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/top_hat_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/top_hat.png");
     }
 
     @Override

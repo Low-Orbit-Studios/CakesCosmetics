@@ -13,7 +13,7 @@ public class ArrowQuiverModel extends GeoModel<ArrowQuiverItem> {
 
     @Override
     public ResourceLocation getTextureResource(ArrowQuiverItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/arrow_quiver_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/arrow_quiver.png");
     }
 
     @Override

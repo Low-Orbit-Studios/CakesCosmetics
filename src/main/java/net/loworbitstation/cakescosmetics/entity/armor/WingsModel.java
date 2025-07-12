@@ -13,7 +13,7 @@ public class WingsModel extends GeoModel<WingsItem> {
 
     @Override
     public ResourceLocation getTextureResource(WingsItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/wings_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/wings.png");
     }
 
     @Override

@@ -13,7 +13,7 @@ public class WizardsHatModel extends GeoModel<WizardsHatItem> {
 
     @Override
     public ResourceLocation getTextureResource(WizardsHatItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/wizards_hat_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/wizards_hat.png");
     }
 
     @Override

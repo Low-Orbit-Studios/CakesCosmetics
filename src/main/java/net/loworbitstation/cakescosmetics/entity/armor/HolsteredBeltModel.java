@@ -14,7 +14,7 @@ public class HolsteredBeltModel  extends GeoModel<HolsteredBeltItem> {
 
     @Override
     public ResourceLocation getTextureResource(HolsteredBeltItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/holstered_belt_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/holstered_belt.png");
     }
 
     @Override

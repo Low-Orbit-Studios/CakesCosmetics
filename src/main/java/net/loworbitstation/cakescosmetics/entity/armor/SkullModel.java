@@ -13,7 +13,7 @@ public class SkullModel extends GeoModel<SkullItem> {
 
     @Override
     public ResourceLocation getTextureResource(SkullItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/skull_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/skull.png");
     }
 
     @Override

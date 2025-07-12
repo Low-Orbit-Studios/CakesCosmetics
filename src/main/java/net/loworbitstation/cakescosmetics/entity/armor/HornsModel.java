@@ -14,7 +14,7 @@ public class HornsModel extends GeoModel<HornsItem> {
 
     @Override
     public ResourceLocation getTextureResource(HornsItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/horns_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/horns.png");
     }
 
     @Override

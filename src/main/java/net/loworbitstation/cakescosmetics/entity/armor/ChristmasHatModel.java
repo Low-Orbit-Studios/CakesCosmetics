@@ -13,7 +13,7 @@ public class ChristmasHatModel extends GeoModel<ChristmasHatItem> {
 
     @Override
     public ResourceLocation getTextureResource(ChristmasHatItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/christmas_hat_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/christmas_hat.png");
     }
 
     @Override

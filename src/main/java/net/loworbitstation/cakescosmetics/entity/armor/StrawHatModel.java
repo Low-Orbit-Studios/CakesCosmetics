@@ -13,7 +13,7 @@ public class StrawHatModel extends GeoModel<StrawHatItem> {
 
     @Override
     public ResourceLocation getTextureResource(StrawHatItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/straw_hat_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/straw_hat.png");
     }
 
     @Override

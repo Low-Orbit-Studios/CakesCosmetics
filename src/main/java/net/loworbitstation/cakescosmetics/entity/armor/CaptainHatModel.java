@@ -14,7 +14,7 @@ public class CaptainHatModel extends GeoModel<CaptainHatItem> {
 
     @Override
     public ResourceLocation getTextureResource(CaptainHatItem object) {
-        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/captain_hat_texture.png");
+        return new ResourceLocation(CakesCosmetics.MOD_ID, "textures/models/armor/captain_hat.png");
     }
 
     @Override
