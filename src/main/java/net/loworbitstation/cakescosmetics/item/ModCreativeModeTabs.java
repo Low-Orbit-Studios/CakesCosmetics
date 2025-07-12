@@ -15,7 +15,7 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CakesCosmetics.MOD_ID);
     public static final RegistryObject<CreativeModeTab> CAKES_COSMETICS_TAB = CREATIVE_MODE_TABS.register(CAKES_COSMETICS_TAB_ID,
             () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(ModItems.BANDOLIER.get()))
+                    .icon(() -> new ItemStack(ModItems.CAKEMAN_PLUSHIE.get()))
                     .title(Component.translatable("creativetab." + CAKES_COSMETICS_TAB_ID))
                     .displayItems((pParameters, pOutput) -> {
                         var blocks = ModBlocks.BLOCKS.getEntries();

@@ -131,7 +131,14 @@ public class ModItems {
                     new Item.Properties()
             )
     );
-
+    public static final RegistryObject<VanityArmorItem> CAKEMAN_PLUSHIE = ITEMS.register("cakeman_plushie",
+            () -> new CakemanPlushieItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.HELMET,
+                    new Item.Properties()
+            ) {
+            }
+    );
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
