@@ -155,6 +155,30 @@ public class ModItems {
             ) {
             }
     );
+    public static final RegistryObject<VanityArmorItem> TOP_HAT_HAT = ITEMS.register("top_hat_hat",
+            () -> new TopHatHatItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.HELMET,
+                    new Item.Properties()
+            ) {
+            }
+    );
+    public static final RegistryObject<VanityArmorItem> HERMES_BOOTS = ITEMS.register("hermes_boots",
+            () -> new HermesBootsItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.BOOTS,
+                    new Item.Properties()
+            ) {
+            }
+    );
+    public static final RegistryObject<VanityArmorItem> PUMPKIN_HAT = ITEMS.register("pumpkin_hat",
+            () -> new PumpkinHatItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.HELMET,
+                    new Item.Properties()
+            ) {
+            }
+    );
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
