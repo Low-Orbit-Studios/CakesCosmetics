@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "tag": "forge:nuggets/iron"
+    },
+    "T": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "TSI",
+    "SI ",
+    "I  "
+  ],
+  "result": {
+    "item": "cakescosmetics:sewing_kit"
+  }
+}

@@ -1,0 +1,31 @@
+{
+
+  "block.cakescosmetics.sewing_station": "Sewing Table",
+
+  "creativetab.cakes_cosmetics_tab": "Cake's Cosmetics",
+
+  "item.cakescosmetics.sewing_kit": "Sewing Kit",
+  "item.cakescosmetics.bandolier": "Bandolier",
+  "item.cakescosmetics.captain_hat": "Captain Hat",
+  "item.cakescosmetics.cowboy_hat": "Cowboy Hat",
+  "item.cakescosmetics.holstered_belt": "Holstered Belt",
+  "item.cakescosmetics.horns": "Horns",
+  "item.cakescosmetics.sombrero": "Sombrero",
+  "item.cakescosmetics.top_hat": "Top Hat",
+  "item.cakescosmetics.wizards_hat": "Wizards Hat",
+  "item.cakescosmetics.straw_hat": "Straw Hat",
+  "item.cakescosmetics.arrow_quiver": "Arrow Quiver",
+  "item.cakescosmetics.christmas_hat": "Christmas Hat",
+  "item.cakescosmetics.dragon_skull": "Dragon Skull",
+  "item.cakescosmetics.pirate_hat": "Pirate Hat",
+  "item.cakescosmetics.skull": "Skull",
+  "item.cakescosmetics.wings": "Wings",
+  "item.cakescosmetics.cakeman_plushie": "Cakeman Plushie",
+  "item.cakescosmetics.kasa_hat": "Kasa Hat",
+  "item.cakescosmetics.sheathed_katana": "Sheathed Katana",
+  "item.cakescosmetics.top_hat_hat": "Top Hat Hat",
+  "item.cakescosmetics.hermes_boots": "Hermes Boots",
+  "item.cakescosmetics.pumpkin_hat": "Pumpkin Hat",
+  "item.cakescosmetics.pickelhaube": "Pickelhaube",
+  "item.cakescosmetics.crown": "Crown"
+}

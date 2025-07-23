@@ -1,0 +1,12 @@
+{
+	"parent": "minecraft:block/cube",
+	"textures": {
+		"down": "minecraft:block/polished_deepslate",
+		"east": "cakescosmetics:block/sewing_station_side",
+		"north": "cakescosmetics:block/sewing_station_front",
+		"particle": "cakescosmetics:block/sewing_station_front",
+		"south": "cakescosmetics:block/sewing_station_side",
+		"up": "cakescosmetics:block/sewing_station_top",
+		"west": "cakescosmetics:block/sewing_station_front"
+	}
+}

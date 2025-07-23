@@ -14,6 +14,8 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
+import static net.loworbitstation.cakescosmetics.item.ModItems.ITEMS;
+
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(CakesCosmetics.MOD_ID)
 public class CakesCosmetics {
@@ -29,7 +31,7 @@ public class CakesCosmetics {
         // Register the Deferred Register to the mod event bus so blocks get registered
         ///BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        ///ITEMS.register(modEventBus);
+        ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         ///CREATIVE_MODE_TABS.register(modEventBus);
 
