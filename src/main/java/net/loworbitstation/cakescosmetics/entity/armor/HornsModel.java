@@ -1,7 +1,6 @@
 package net.loworbitstation.cakescosmetics.entity.armor;
 
 import net.loworbitstation.cakescosmetics.CakesCosmetics;
-import net.loworbitstation.cakescosmetics.item.BandolierItem;
 import net.loworbitstation.cakescosmetics.item.HornsItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;

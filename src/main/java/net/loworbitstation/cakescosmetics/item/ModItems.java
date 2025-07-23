@@ -179,6 +179,22 @@ public class ModItems {
             ) {
             }
     );
+    public static final RegistryObject<VanityArmorItem> PICKELHAUBE = ITEMS.register("pickelhaube",
+            () -> new PickelhaubeItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.HELMET,
+                    new Item.Properties()
+            ) {
+            }
+    );
+    public static final RegistryObject<VanityArmorItem> CROWN = ITEMS.register("crown",
+            () -> new CrownItem(
+                    ModArmorMaterials.VANITY_MATERIAL,
+                    Type.HELMET,
+                    new Item.Properties()
+            ) {
+            }
+    );
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
