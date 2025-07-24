@@ -15,7 +15,7 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CakesCosmetics.MOD_ID);
 
     public static final Supplier<CreativeModeTab> CAKES_COSMETICS_TAB = CREATIVE_MODE_TAB.register("cakes_cosmetics_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COWBOY_HAT.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CAKEMAN_PLUSHIE.get()))
                     .title(Component.translatable("creativetab.cakes_cosmetics_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 
