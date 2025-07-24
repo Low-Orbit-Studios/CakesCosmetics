@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.loworbitstation.cakescosmetics.entity.armor.ModGeoArmorDefaultRenderer;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -28,7 +29,7 @@ import java.util.function.Consumer;
 
 public abstract class VanityArmorItem extends ArmorItem implements GeoItem {
     protected AnimatableInstanceCache _animatableInstanceCache= GeckoLibUtil.createInstanceCache(this);
-    public VanityArmorItem(ArmorMaterial pMaterial, Type type, Properties pProperties) {
+    public VanityArmorItem(Holder<ArmorMaterial> pMaterial, Type type, Properties pProperties) {
         super(pMaterial, type, pProperties);
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
@@ -49,7 +50,7 @@ public abstract class VanityArmorItem extends ArmorItem implements GeoItem {
             }
         });
     }
-    @Override
+    // @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
         return ImmutableMultimap.of();
     }
@@ -60,6 +61,7 @@ public abstract class VanityArmorItem extends ArmorItem implements GeoItem {
     public boolean isDamageable(ItemStack stack) {
         return false;
     }
+
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, 20, state -> {
