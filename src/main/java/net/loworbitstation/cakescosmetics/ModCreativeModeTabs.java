@@ -1,6 +1,7 @@
-package net.loworbitstation.cakescosmetics.item;
+package net.loworbitstation.cakescosmetics;
 
-import net.loworbitstation.cakescosmetics.CakesCosmetics;
+import net.loworbitstation.cakescosmetics.block.ModBlocks;
+import net.loworbitstation.cakescosmetics.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -19,9 +20,13 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.cakes_cosmetics_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 
+                        var blocks = ModBlocks.BLOCKS.getEntries();
+                        for(var block : blocks){
+                            output.accept(block.get());
+                        }
                         var items = ModItems.ITEMS.getEntries();
                         for(var item : items){
-                          output.accept(item.get());
+                            output.accept(item.get());
                         }
 
                     }).build());

@@ -1,6 +1,13 @@
 package net.loworbitstation.cakescosmetics;
 
-import net.loworbitstation.cakescosmetics.item.ModCreativeModeTabs;
+import net.loworbitstation.cakescosmetics.block.ModBlocks;
+import net.loworbitstation.cakescosmetics.block.entity.ModBlockEntities;
+import net.loworbitstation.cakescosmetics.item.ModItems;
+import net.loworbitstation.cakescosmetics.screen.ModMenuTypes;
+import net.loworbitstation.cakescosmetics.screen.custom.SewingTableScreen;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -15,8 +22,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import static net.loworbitstation.cakescosmetics.item.ModItems.ITEMS;
-
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(CakesCosmetics.MOD_ID)
 public class CakesCosmetics {
@@ -29,11 +34,10 @@ public class CakesCosmetics {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        // Register the Deferred Register to the mod event bus so blocks get registered
-        ///BLOCKS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
-        ITEMS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so tabs get registered
+        ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+        ModItems.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
@@ -60,5 +64,12 @@ public class CakesCosmetics {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
 
+    }
+    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.SEWING_TABLE_MENU.get(), SewingTableScreen::new);
+        }
     }
 }
