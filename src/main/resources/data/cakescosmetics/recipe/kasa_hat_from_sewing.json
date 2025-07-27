@@ -1,0 +1,11 @@
+{
+  "type": "cakescosmetics:sewing",
+  "ingredient": {
+    "count": 1,
+    "item": "cakescosmetics:sewing_kit"
+  },
+  "result": {
+    "count": 1,
+    "id": "cakescosmetics:kasa_hat"
+  }
+}

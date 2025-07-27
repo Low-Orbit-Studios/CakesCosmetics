@@ -3,6 +3,7 @@ package net.loworbitstation.cakescosmetics;
 import net.loworbitstation.cakescosmetics.block.ModBlocks;
 import net.loworbitstation.cakescosmetics.block.entity.ModBlockEntities;
 import net.loworbitstation.cakescosmetics.item.ModItems;
+import net.loworbitstation.cakescosmetics.recipe.ModRecipes;
 import net.loworbitstation.cakescosmetics.screen.ModMenuTypes;
 import net.loworbitstation.cakescosmetics.screen.custom.SewingTableScreen;
 import net.neoforged.api.distmarker.Dist;
@@ -36,9 +37,13 @@ public class CakesCosmetics {
 
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
-        ModMenuTypes.register(modEventBus);
+
         ModItems.register(modEventBus);
+
         ModCreativeModeTabs.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

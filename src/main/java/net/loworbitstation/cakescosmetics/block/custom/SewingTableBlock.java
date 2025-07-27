@@ -2,20 +2,16 @@ package net.loworbitstation.cakescosmetics.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.loworbitstation.cakescosmetics.block.entity.SewingTableBlockEntity;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -63,7 +59,7 @@ public class SewingTableBlock extends BaseEntityBlock {
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(level.getBlockEntity(pos) instanceof SewingTableBlockEntity sewingTableBlockEntity) {
 
-            player.openMenu(new SimpleMenuProvider(sewingTableBlockEntity, Component.literal("SewingTable")), pos);
+            player.openMenu(new SimpleMenuProvider(sewingTableBlockEntity, Component.translatable("block.cakescosmetics.sewing_table")), pos);
             return ItemInteractionResult.SUCCESS;
         }
         return ItemInteractionResult.SUCCESS;

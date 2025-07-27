@@ -1,6 +1,7 @@
 package net.loworbitstation.cakescosmetics.block.entity;
 
 import net.loworbitstation.cakescosmetics.screen.custom.SewingTableMenu;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
@@ -14,6 +15,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
+
+@MethodsReturnNonnullByDefault
+@SuppressWarnings("unused")
 
 public class SewingTableBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler inventory = new ItemStackHandler(1) {
@@ -51,7 +55,7 @@ public class SewingTableBlockEntity extends BlockEntity implements MenuProvider 
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("SewingTable");
+        return Component.translatable("block.cakescosmetics.sewing_table");
     }
 
     @Override
